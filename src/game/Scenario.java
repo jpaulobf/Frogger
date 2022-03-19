@@ -4,9 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.image.VolatileImage;
-
-import interfaces.IGame;
-
+import interfaces.GameInterface;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
@@ -32,7 +30,7 @@ public class Scenario {
     private BufferedImage frogHome          = null;
     private volatile boolean showElements   = true;
     private volatile boolean reseting       = false;
-    private IGame gameRef                   = null;
+    private GameInterface gameRef           = null;
 
     //how many tiles in x and in y
     protected final byte tilesInX           = 21;
@@ -77,7 +75,7 @@ public class Scenario {
      * @param windowWidth
      * @param windowHeight
      */
-    public Scenario(IGame game, int windowWidth, int windowHeight, int scoreHeight) {
+    public Scenario(GameInterface game, int windowWidth, int windowHeight, int scoreHeight) {
         this.scoreHeight    = scoreHeight;
         this.windowHeight   = windowHeight;
         this.windowWidth    = windowWidth;
@@ -297,7 +295,7 @@ public class Scenario {
         this.reseting = !this.reseting;
     }
 
-    public IGame getGameRef() {
+    public GameInterface getGameRef() {
         return (this.gameRef);
     }
 }

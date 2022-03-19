@@ -1,13 +1,13 @@
 package engine;
 
-import interfaces.IGame;
+import interfaces.GameInterface;
 import game.Game;
 
 /**
  * Game factory
  */
 public class GameFactory {
-    public static IGame getGameInstance() {
+    public static GameInterface getGameInstance() {
         return (new Game());
     }
 }

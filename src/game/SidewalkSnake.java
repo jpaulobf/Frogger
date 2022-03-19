@@ -2,7 +2,7 @@ package game;
 
 import game.interfaces.Lanes;
 import game.interfaces.Stages;
-import interfaces.IGame;
+import interfaces.GameInterface;
 
 /**
  * Represents the Snake in the sidewalk
@@ -14,7 +14,7 @@ public class SidewalkSnake extends Snake {
     /**
      * Class constructor
      */
-    public SidewalkSnake(IGame game, int windowWidth) {
+    public SidewalkSnake(GameInterface game, int windowWidth) {
         super(game, windowWidth);
         this.nextStage();
     }

@@ -2,7 +2,7 @@ package game;
 
 import game.interfaces.Lanes;
 import game.interfaces.Stages;
-import interfaces.IGame;
+import interfaces.GameInterface;
 
 /**
  * Represents the Snake in the Trunk
@@ -18,7 +18,7 @@ public class TrunkSnake extends Snake {
     /**
      * Class constructor
      */
-    public TrunkSnake(IGame game, int windowWidth) {
+    public TrunkSnake(GameInterface game, int windowWidth) {
         //call super constructor
         super(game, windowWidth);
         this.nextStage();

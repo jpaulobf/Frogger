@@ -1,11 +1,12 @@
 package interfaces;
+
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
 
 /**
  * All games need to implement the IGame interface
  */
-public interface IGame {
+public interface GameInterface {
     /**
      * Game update
      * @param frametime

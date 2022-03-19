@@ -3,10 +3,8 @@ package game;
 import util.Audio;
 import java.awt.Color;
 import java.awt.Graphics2D;
-
 import game.interfaces.Stages;
-import interfaces.IGame;
-
+import interfaces.GameInterface;
 import java.awt.image.VolatileImage;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -15,7 +13,7 @@ import java.awt.RenderingHints;
 /**
  * Class responsable for the game
  */
-public class Game implements IGame {
+public class Game implements GameInterface {
 
     //the game statemachine goes here
     private StateMachine gameState          = null;

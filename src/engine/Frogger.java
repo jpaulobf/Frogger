@@ -11,18 +11,16 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferStrategy;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-
 import interfaces.CanvasEngine;
 import interfaces.ControllerListener;
-import interfaces.IGame;
+import interfaces.GameInterface;
 import util.JoystickController;
 
 /*
-    Project:    Modern 2D Java Game Engine
-    Purpose:    Provide basics functionalities to write 2D games in Java in a more modern approach
+    Project:    Frogger Game
     Author:     Joao P. B. Faria
     Date:       Octuber 2021
-    WTCD:       This class, provides a stage for the game.
+    WTCD:       This is a clone of classic Konami's game, Frogger.
 */
 public class Frogger implements Runnable {
 
@@ -48,7 +46,7 @@ public class Frogger implements Runnable {
         
         //the first 'canvas' & the backbuffer (for simple doublebuffer strategy)
         private JPanel canvas                       = null;
-        private IGame game                          = null;
+        private GameInterface game                  = null;
 
         //some support and the graphical device itself
         private GraphicsEnvironment ge              = null;

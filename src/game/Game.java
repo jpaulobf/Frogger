@@ -217,6 +217,70 @@ public class Game implements GameInterface {
     }
 
     /**
+     * Decrease the Master Volume
+     */
+    @Override
+    public void decMasterVolume() {
+        this.decVolumeSFX();
+        this.decVolumeTheme();
+    }
+
+    /**
+     * Increase the Master Volume
+     */
+    @Override
+    public void incMasterVolume() {
+        this.incVolumeSFX();
+        this.incVolumeTheme();
+    }
+
+    /**
+     * Decrease only the theme
+     */
+    @Override
+    public void decVolumeTheme() {
+        this.theme.decVolume(1);
+        this.gameoverTheme.decVolume(1);
+    }
+
+    /**
+     * Increase the theme volume
+     */
+    @Override
+    public void incVolumeTheme() {
+        this.theme.addVolume(1);
+        this.gameoverTheme.addVolume(1);
+    }
+
+    /**
+     * Decrease the SFX Volume
+     */
+    @Override
+    public void decVolumeSFX() {
+        this.frog.jumpAudio.decVolume(1);
+        this.frog.plunkAudio.decVolume(1);
+        this.frog.squashAudio.decVolume(1);
+        this.frog.dockerAudio.decVolume(1);
+        this.frog.clearAudio.decVolume(1);
+        this.frog.catchAudio.decVolume(1);
+        this.timer.lasttime.decVolume(1);
+    }
+
+    /**
+     * Increase the SFX Volume
+     */
+    @Override
+    public void incVolumeSFX() {
+        this.frog.jumpAudio.addVolume(1);
+        this.frog.plunkAudio.addVolume(1);
+        this.frog.squashAudio.addVolume(1);
+        this.frog.dockerAudio.addVolume(1);
+        this.frog.clearAudio.addVolume(1);
+        this.frog.catchAudio.addVolume(1);
+        this.timer.lasttime.addVolume(1);
+    }
+
+    /**
      * Stop the theme position
      */
     @Override
@@ -306,6 +370,8 @@ public class Game implements GameInterface {
             this.canContinue = false;
             if (!this.reseting) {
                 this.movement(keyCode);
+                if (keyCode == 45) {this.decMasterVolume();}
+                if (keyCode == 61) {this.incMasterVolume();}
             }
         }
     }

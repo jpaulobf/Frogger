@@ -19,12 +19,12 @@ public class Frog extends SpriteImpl {
     private final byte INITIAL_T_POS_Y      = 12;
     private volatile boolean isDead         = false;
     private Scenario scenario               = null;
-    private volatile Audio jumpAudio        = null;
-    private volatile Audio plunkAudio       = null;
-    private volatile Audio squashAudio      = null;
-    private volatile Audio dockerAudio      = null;
-    private volatile Audio clearAudio       = null;
-    private volatile Audio catchAudio       = null;
+    protected volatile Audio jumpAudio      = null;
+    protected volatile Audio plunkAudio     = null;
+    protected volatile Audio squashAudio    = null;
+    protected volatile Audio dockerAudio    = null;
+    protected volatile Audio clearAudio     = null;
+    protected volatile Audio catchAudio     = null;
 
     //render variables
     private byte tileX                      = 0;

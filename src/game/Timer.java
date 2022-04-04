@@ -18,7 +18,7 @@ public class Timer {
     private final byte timerBarH        = 20;
     private BufferedImage timeTile      = null;
     private volatile boolean stopped    = false;
-    private volatile Audio lasttime     = null;
+    protected volatile Audio lasttime   = null;
     private final short timer3          = (short)(this.timer * 3);
 
     /**

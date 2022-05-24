@@ -1,7 +1,7 @@
 package game;
 
-import interfaces.SpriteCollection;
-import interfaces.Stages;
+import game.interfaces.SpriteCollection;
+import game.interfaces.Stages;
 
 import java.awt.image.BufferedImage;
 

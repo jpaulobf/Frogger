@@ -13,7 +13,7 @@ public class Launcher {
         
         //start the thread
         //--->>> FPS options (SplashScreen constructor) - 0 (unlimited) - 30/60/90/120/240
-        Thread thread = new Thread(new SplashScreen(120), "engine");
+        Thread thread = new Thread(new SplashScreen(0), "engine");
         thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }

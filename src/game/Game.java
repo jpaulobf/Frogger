@@ -149,6 +149,11 @@ public class Game implements GameInterface {
                     this.gameoverTheme.play();
                 }
             }
+
+            //Prevent overflow
+            if (this.framecounter < 0) {
+                this.framecounter = 1;
+            }
         }
     }
 

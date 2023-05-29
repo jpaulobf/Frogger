@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import game.interfaces.SpriteCollection;
 import java.awt.image.BufferedImage;
 import game.interfaces.Stages;
+import util.LoadingStuffs;
 
 /**
  * Class represents the gator head

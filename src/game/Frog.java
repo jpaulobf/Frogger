@@ -1,6 +1,8 @@
 package game;
 
 import util.Audio;
+import util.LoadingStuffs;
+
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;

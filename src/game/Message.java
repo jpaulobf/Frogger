@@ -3,6 +3,8 @@ package game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import util.Audio;
+import util.LoadingStuffs;
+
 import java.awt.Color;
 
 /**

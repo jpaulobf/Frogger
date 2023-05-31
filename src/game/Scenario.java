@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.image.VolatileImage;
 import interfaces.GameInterface;
+import util.LoadingStuffs;
+
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;

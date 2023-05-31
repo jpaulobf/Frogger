@@ -3,6 +3,7 @@ package game;
 import java.awt.image.BufferedImage;
 
 import interfaces.GameInterface;
+import util.LoadingStuffs;
 
 /**
  * Base class for the snake

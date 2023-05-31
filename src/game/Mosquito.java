@@ -2,6 +2,7 @@ package game;
 
 import game.interfaces.SpriteCollection;
 import game.interfaces.Stages;
+import util.LoadingStuffs;
 
 import java.awt.image.BufferedImage;
 

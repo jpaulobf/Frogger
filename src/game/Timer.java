@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import util.Audio;
+import util.LoadingStuffs;
 
 /**
  * Class responsible for game timer

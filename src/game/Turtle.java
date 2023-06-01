@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import game.interfaces.Sprite;
 import game.interfaces.SpriteCollection;
+import util.LoadingStuffs;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
 

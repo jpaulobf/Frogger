@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
 import game.interfaces.SpriteCollection;
+import util.LoadingStuffs;
 
 /**
  * Tree trunk (individual) class

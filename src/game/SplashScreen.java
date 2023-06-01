@@ -19,6 +19,7 @@ import java.awt.image.VolatileImage;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import engine.Frogger;
+import util.LoadingStuffs;
 
 /*
     Project:    Modern 2D Java Game Engine

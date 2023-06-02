@@ -2,6 +2,7 @@ package game;
 
 import java.awt.image.BufferedImage;
 import game.interfaces.SpriteCollection;
+import util.LoadingStuffs;
 
 /**
  * Class representing one vehicle

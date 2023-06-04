@@ -24,7 +24,7 @@ public class StateMachine {
      * @param game
      */
     public StateMachine(Game game) {
-        this.currentState       = MENU;
+        this.currentState       = STAGING;
         this.referencetToGame   = game;
     }
 

@@ -15,6 +15,7 @@ public class StateMachine {
     public final static int IN_GAME     = 7;
     public final static int CONTINUE    = 8;
     public final static int GAME_OVER   = 9;
+    public final static int EXITING     = 10;
     protected int currentState          = STARTING;
     protected Game referencetToGame     = null;
 
@@ -23,14 +24,22 @@ public class StateMachine {
      * @param game
      */
     public StateMachine(Game game) {
-        this.currentState = STAGING;
-        this.referencetToGame = game;
+        this.currentState       = MENU;
+        this.referencetToGame   = game;
     }
 
+    /**
+     * Recovery the current state
+     * @return
+     */
     public int getCurrentState() {
         return (this.currentState);
     }
 
+    /**
+     * Define new current state
+     * @param state
+     */
     public void setCurrentState(int state) {
         this.currentState = state;
     }

@@ -1,7 +1,13 @@
 import game.SplashScreen;
 
+/**
+ * Class for launching the main program
+ * Author: Joao Paulo B Faria
+ * Date: Oct-2022
+ */
 public class Launcher {
 
+    //Define if OpenGL is enabled or not
     public static final boolean setOpenGL = false;
 
     public static void main(String[] args) {

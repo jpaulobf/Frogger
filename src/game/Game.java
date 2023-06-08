@@ -34,6 +34,7 @@ public class Game implements GameInterface {
     private SidewalkSnake sidewalkSnake     = null;
     private Frog frog                       = null;
     private GameOver gameOver               = null;
+    private Menu menu                       = null;
     private Message message                 = null;
     private Timer timer                     = null;
     private volatile Audio theme            = null;
@@ -76,6 +77,7 @@ public class Game implements GameInterface {
         this.gameOver       = new GameOver(this, this.wwm, this.completeWhm);
         this.message        = new Message(this, this.wwm, this.completeWhm);
         this.timer          = new Timer(this, this.wwm, this.scoreHeight + this.whm);
+        this.menu           = new Menu(this, this.wwm, this.whm);
         this.theme          = (Audio)LoadingStuffs.getInstance().getStuff("theme");
         this.gameoverTheme  = (Audio)LoadingStuffs.getInstance().getStuff("gameover-theme");
     }
@@ -118,6 +120,15 @@ public class Game implements GameInterface {
                         this.gameState.setCurrentState(StateMachine.IN_GAME);
                     }
                 }
+            } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
+                this.framecounter += frametime;
+
+                this.menu.update(frametime);
+                if (this.framecounter == frametime) { //update just one time
+                    
+                } else {
+                }
+                
             } else if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
                 this.framecounter += frametime;
                 if (this.framecounter == frametime) {
@@ -177,6 +188,8 @@ public class Game implements GameInterface {
             //////////////////////////////////////////////////////////////////////
             if (this.gameState.getCurrentState() == StateMachine.STAGING) {
                 this.message.draw(frametime);
+            } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
+                this.menu.draw(frametime);
             } else if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
                 this.score.draw(frametime);
                 this.scenario.draw(frametime);
@@ -330,6 +343,7 @@ public class Game implements GameInterface {
      */
     @Override
     public void softReset() {
+        this.framecounter = 0;
         this.scenario.getVehicles().reset();
         this.scenario.getTrunks().reset();
         this.scenario.getTrunks().getTrunkSnake().reset();

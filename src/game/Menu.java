@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
+import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 
@@ -12,8 +13,9 @@ public class Menu {
     private Graphics2D bgd2             = null;
     private int windowWidth             = 0;
     private int windowHeight            = 0;
-    private VolatileImage bgBufferImage = null;
     private Game gameRef                = null;
+    private BufferedImage selector      = null;
+    private VolatileImage bgBufferImage = null;
 
     /**
      * Constructor
@@ -25,17 +27,19 @@ public class Menu {
         this.windowHeight   = windowHeight;
         this.windowWidth    = windowWidth;
         this.gameRef        = game;
+        this.drawInBuffer();
     }
 
     /**
      * This private method construct the BG just once.
      * Than, when necessary it is ploted in the backbuffer.
      */
-    private void drawGameOverInBuffer() {
+    private void drawInBuffer() {
         if (this.bgd2 == null) {
-            /*
-            this.gameover = (BufferedImage)LoadingStuffs.getInstance().getStuff("gameover");
+            
+            this.selector = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
 
+            /*
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
             this.bgd2           = (Graphics2D)bgBufferImage.getGraphics();
@@ -73,5 +77,7 @@ public class Menu {
 
         //After construct the bg once, copy it to the graphic device
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
+
+        //todo... os demais itens...
     }
 }

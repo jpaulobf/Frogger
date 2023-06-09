@@ -72,7 +72,7 @@ public class Menu {
      */
     public void draw(long frametime) {
         //clear the stage
-        this.gameRef.getG2D().setBackground(Color.BLACK);
+        this.gameRef.getG2D().setBackground(new Color(51, 152, 101, 255));
         this.gameRef.getG2D().clearRect(0, 0, this.windowWidth, this.windowHeight * 2);
 
         //After construct the bg once, copy it to the graphic device

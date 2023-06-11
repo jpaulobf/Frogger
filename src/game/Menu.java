@@ -15,7 +15,9 @@ public class Menu {
     private int windowHeight            = 0;
     private Game gameRef                = null;
     private BufferedImage selector      = null;
+    private BufferedImage logo          = null;
     private VolatileImage bgBufferImage = null;
+    private final Color greenColor      = new Color(51, 152, 101, 255);
 
     /**
      * Constructor
@@ -37,25 +39,25 @@ public class Menu {
     private void drawInBuffer() {
         if (this.bgd2 == null) {
             
-            this.selector = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
+            this.selector   = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
+            this.logo       = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
 
-            /*
+            
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
             this.bgd2           = (Graphics2D)bgBufferImage.getGraphics();
 
             //paint all bg in black
-            this.bgd2.setBackground(Color.BLACK);
+            this.bgd2.setBackground(greenColor);
             this.bgd2.clearRect(0, 0, this.windowWidth, this.windowHeight);
             
-            int imgW = this.gameover.getWidth();
-            int imgH = this.gameover.getHeight();
+            int imgW = this.logo.getWidth();
+            int imgH = this.logo.getHeight();
             int imgX = ((this.windowWidth - imgW)/2);
-            int imgY = ((this.windowHeight - imgH)/2);
+            int imgY = ((this.windowHeight - imgH)/2) - 100;
 
-            this.bgd2.drawImage(this.gameover, imgX, imgY, imgW + imgX, imgH + imgY, 
+            this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
-             */
         }
     }
 
@@ -72,7 +74,7 @@ public class Menu {
      */
     public void draw(long frametime) {
         //clear the stage
-        this.gameRef.getG2D().setBackground(new Color(51, 152, 101, 255));
+        this.gameRef.getG2D().setBackground(greenColor);
         this.gameRef.getG2D().clearRect(0, 0, this.windowWidth, this.windowHeight * 2);
 
         //After construct the bg once, copy it to the graphic device

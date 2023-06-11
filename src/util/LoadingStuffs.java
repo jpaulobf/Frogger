@@ -127,6 +127,12 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\gator.png"));
             stuffs.put("gator", image);
 
+            image = ImageIO.read(new File("images\\selector.png"));
+            stuffs.put("selector", image);
+
+            image = ImageIO.read(new File("images\\logo.png"));
+            stuffs.put("logo", image);
+
             Logger.INFO("read all images...", this);
 
 

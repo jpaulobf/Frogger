@@ -54,7 +54,7 @@ public class Menu {
             int imgW = this.logo.getWidth();
             int imgH = this.logo.getHeight();
             int imgX = ((this.windowWidth - imgW)/2);
-            int imgY = 42;
+            int imgY = 84;
 
             this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
@@ -81,7 +81,7 @@ public class Menu {
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
 
 
-        this.gameRef.getG2D().drawImage(this.selector, 116, 480, null);
+        this.gameRef.getG2D().drawImage(this.selector, 105, 582, null);
 
         //todo... os demais itens...
     }

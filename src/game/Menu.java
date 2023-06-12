@@ -54,7 +54,7 @@ public class Menu {
             int imgW = this.logo.getWidth();
             int imgH = this.logo.getHeight();
             int imgX = ((this.windowWidth - imgW)/2);
-            int imgY = ((this.windowHeight - imgH)/2) - 100;
+            int imgY = 42;
 
             this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
@@ -79,6 +79,9 @@ public class Menu {
 
         //After construct the bg once, copy it to the graphic device
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
+
+
+        this.gameRef.getG2D().drawImage(this.selector, 116, 480, null);
 
         //todo... os demais itens...
     }

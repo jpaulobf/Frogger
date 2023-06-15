@@ -17,6 +17,9 @@ public class Menu {
     private BufferedImage selector      = null;
     private BufferedImage logo          = null;
     private VolatileImage bgBufferImage = null;
+    private BufferedImage labelPlayGame = null;
+    private BufferedImage labelOptions  = null;
+    private BufferedImage labelExit     = null;
     private final Color greenColor      = new Color(51, 152, 101, 255);
 
     /**
@@ -39,8 +42,9 @@ public class Menu {
     private void drawInBuffer() {
         if (this.bgd2 == null) {
             
-            this.selector   = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
-            this.logo       = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
+            this.selector       = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
+            this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
+            this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
 
             
             //create a backbuffer image for doublebuffer

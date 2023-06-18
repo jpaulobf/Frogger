@@ -9,7 +9,7 @@ public class Launcher {
 
     //Define if OpenGL is enabled or not
     public static final boolean setOpenGL   = false;
-    public static final boolean fullscreen  = true;
+    public static final boolean fullscreen  = false;
 
     public static void main(String[] args) {
         //enable the openGL

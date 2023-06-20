@@ -8,7 +8,8 @@ import game.SplashScreen;
 public class Launcher {
 
     //Define if OpenGL is enabled or not
-    public static final boolean setOpenGL = false;
+    public static final boolean setOpenGL   = false;
+    public static final boolean fullscreen  = false;
 
     public static void main(String[] args) {
         //enable the openGL
@@ -19,7 +20,7 @@ public class Launcher {
         
         //start the thread
         //--->>> FPS options (SplashScreen constructor) - 0 (unlimited) - 30/60/90/120/240
-        Thread thread = new Thread(new SplashScreen(0), "engine");
+        Thread thread = new Thread(new SplashScreen(0, fullscreen), "engine");
         thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }

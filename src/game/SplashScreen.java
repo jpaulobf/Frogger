@@ -57,6 +57,7 @@ public class SplashScreen extends JFrame implements Runnable {
     //this screen control logic parameter   
     private int selectedItem                    = 0;
     private int FPS                             = 0;
+    private boolean fullscreen                  = false;
     
     /*
         WTMD: some responsabilites here:
@@ -65,12 +66,13 @@ public class SplashScreen extends JFrame implements Runnable {
             3) add a keylistener
             4) initialize the canvas and retrieve the graphical device objects
     */
-    public SplashScreen(int FPS) {
+    public SplashScreen(int FPS, boolean fullscreen) {
 
         //////////////////////////////////////////////////////////////////////
         // ->>>  for the window
         //////////////////////////////////////////////////////////////////////
         LoadingStuffs.getInstance();
+        this.fullscreen = fullscreen;
 
         //load or provide the default configuration file
         new ConfigurationFile().verifyTheConfigurationFile();
@@ -181,7 +183,7 @@ public class SplashScreen extends JFrame implements Runnable {
             Thread.sleep(2_000);
             this.setVisible(false);
             //start the thread
-            Thread thread = new Thread(new Frogger(this.FPS), "engine");
+            Thread thread = new Thread(new Frogger(this.FPS, this.fullscreen), "engine");
             thread.setPriority(Thread.MAX_PRIORITY);
             thread.start();
         } catch (Exception e) {}

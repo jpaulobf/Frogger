@@ -68,7 +68,7 @@ public class Frogger implements Runnable {
         /**
          * Game canvas constructor
         */
-        public Canvas() {
+        public Canvas(boolean fullscreen) {
             //////////////////////////////////////////////////////////////////////
             //set some properties for this window
             //////////////////////////////////////////////////////////////////////
@@ -114,6 +114,9 @@ public class Frogger implements Runnable {
             this.fullScreenWidth    = (int)size.getWidth();
             this.fullScreenXPos     = 0;
             this.fullScreenYPos     = 0;
+            this.fullscreen         = fullscreen;
+
+            System.out.println(this.fullscreen);
 
             //////////////////////////////////////////////////////////////////////
             // ->>>  now, for the canvas
@@ -128,7 +131,7 @@ public class Frogger implements Runnable {
             this.add(canvas);
 
             //verify if fullscreen mode is supported & desired
-            if (fullscreen && isFullScreenAvailable) {
+            if (this.fullscreen && this.isFullScreenAvailable) {
                 // set to Full-screen mode
                 this.setIgnoreRepaint(true);
                 dsd.setFullScreenWindow(this);
@@ -497,13 +500,15 @@ public class Frogger implements Runnable {
 
     //target FPS
     private int targetFPS = 0;
+    private boolean fullscreen = false;
 
     /**
      * Thread Constructor
      * @param targetFPS
      */
-    public Frogger(int targetFPS) {
+    public Frogger(int targetFPS, boolean fullscreen) {
         this.targetFPS  = targetFPS;
+        this.fullscreen = fullscreen;
     }
 
     /**
@@ -511,6 +516,6 @@ public class Frogger implements Runnable {
      */
     @Override
     public void run() {
-        new GameEngine(this.targetFPS, new Canvas()).run();
+        new GameEngine(this.targetFPS, new Canvas(this.fullscreen)).run();
     }
 }

@@ -46,7 +46,6 @@ public class Menu {
             this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
             this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
 
-            
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
             this.bgd2           = (Graphics2D)bgBufferImage.getGraphics();
@@ -60,8 +59,16 @@ public class Menu {
             int imgX = ((this.windowWidth - imgW)/2);
             int imgY = 84;
 
+            int logoImgW = this.labelPlayGame.getWidth();
+            int logoImgH = this.labelPlayGame.getHeight();
+            int logoImgX = ((this.windowWidth - logoImgW)/2);
+            int logoImgY = 577;
+
             this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
+
+            this.bgd2.drawImage(this.labelPlayGame, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
+                                                0, 0, logoImgW, logoImgH, null);
         }
     }
 
@@ -83,8 +90,6 @@ public class Menu {
 
         //After construct the bg once, copy it to the graphic device
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
-
-
         this.gameRef.getG2D().drawImage(this.selector, 105, 582, null);
 
         //todo... os demais itens...

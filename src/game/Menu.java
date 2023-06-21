@@ -45,6 +45,7 @@ public class Menu {
             this.selector       = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
             this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
             this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
+            this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
 
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
@@ -64,11 +65,19 @@ public class Menu {
             int logoImgX = ((this.windowWidth - logoImgW)/2);
             int logoImgY = 577;
 
+            int optionsImgW = this.labelOptions.getWidth();
+            int optionsImgH = this.labelOptions.getHeight();
+            int optionsImgX = ((this.windowWidth - optionsImgW)/2);
+            int optionsImgY = 710;
+
             this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
 
             this.bgd2.drawImage(this.labelPlayGame, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
                                                 0, 0, logoImgW, logoImgH, null);
+
+            this.bgd2.drawImage(this.labelOptions, optionsImgX, optionsImgY, optionsImgW + optionsImgX, optionsImgH + optionsImgY, 
+                                                0, 0, optionsImgW, optionsImgH, null);
         }
     }
 

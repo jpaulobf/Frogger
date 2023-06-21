@@ -46,6 +46,7 @@ public class Menu {
             this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
             this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
             this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
+            this.labelExit      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit");
 
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
@@ -70,6 +71,12 @@ public class Menu {
             int optionsImgX = ((this.windowWidth - optionsImgW)/2);
             int optionsImgY = 710;
 
+            int exitImgW = this.labelExit.getWidth();
+            int exitImgH = this.labelExit.getHeight();
+            int exitImgX = ((this.windowWidth - exitImgW)/2);
+            int exitImgY = 782;
+
+
             this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                0, 0, imgW, imgH, null);
 
@@ -78,6 +85,9 @@ public class Menu {
 
             this.bgd2.drawImage(this.labelOptions, optionsImgX, optionsImgY, optionsImgW + optionsImgX, optionsImgH + optionsImgY, 
                                                 0, 0, optionsImgW, optionsImgH, null);
+
+            this.bgd2.drawImage(this.labelExit, exitImgX, exitImgY, exitImgW + exitImgX, exitImgH + exitImgY, 
+                                                0, 0, exitImgW, exitImgH, null);
         }
     }
 

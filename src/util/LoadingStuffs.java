@@ -139,6 +139,9 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\lb_options.png"));
             stuffs.put("label-options", image);
 
+            image = ImageIO.read(new File("images\\lb_exit.png"));
+            stuffs.put("label-exit", image);
+
             Logger.INFO("read all images...", this);
 
 

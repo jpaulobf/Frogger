@@ -136,6 +136,9 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\lb_playgame.png"));
             stuffs.put("label-play-game", image);
 
+            image = ImageIO.read(new File("images\\lb_options.png"));
+            stuffs.put("label-options", image);
+
             Logger.INFO("read all images...", this);
 
 

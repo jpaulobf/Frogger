@@ -21,6 +21,18 @@ public class Menu {
     private BufferedImage labelOptions  = null;
     private BufferedImage labelExit     = null;
     private final Color greenColor      = new Color(51, 152, 101, 255);
+    private int labelPlayW              = 0;
+    private int labelPlayH              = 0;
+    private int labelPlayX              = 0;
+    private final int labelPlayY        = 577;
+    private int optionsImgW             = 0;
+    private int optionsImgH             = 0;
+    private int optionsImgX             = 0;
+    private final int optionsImgY       = 710;
+    private int exitImgW                = 0;
+    private int exitImgH                = 0;
+    private int exitImgX                = 0;
+    private final int exitImgY          = 782;
 
     /**
      * Constructor
@@ -56,38 +68,25 @@ public class Menu {
             this.bgd2.setBackground(greenColor);
             this.bgd2.clearRect(0, 0, this.windowWidth, this.windowHeight);
             
-            int imgW = this.logo.getWidth();
-            int imgH = this.logo.getHeight();
-            int imgX = ((this.windowWidth - imgW)/2);
-            int imgY = 84;
-
-            int logoImgW = this.labelPlayGame.getWidth();
-            int logoImgH = this.labelPlayGame.getHeight();
+            int logoImgW = this.logo.getWidth();
+            int logoImgH = this.logo.getHeight();
             int logoImgX = ((this.windowWidth - logoImgW)/2);
-            int logoImgY = 577;
+            int logoImgY = 84;
 
-            int optionsImgW = this.labelOptions.getWidth();
-            int optionsImgH = this.labelOptions.getHeight();
-            int optionsImgX = ((this.windowWidth - optionsImgW)/2);
-            int optionsImgY = 710;
+            this.labelPlayW = this.labelPlayGame.getWidth();
+            this.labelPlayH = this.labelPlayGame.getHeight();
+            this.labelPlayX = ((this.windowWidth - labelPlayW)/2);
 
-            int exitImgW = this.labelExit.getWidth();
-            int exitImgH = this.labelExit.getHeight();
-            int exitImgX = ((this.windowWidth - exitImgW)/2);
-            int exitImgY = 782;
+            this.optionsImgW = this.labelOptions.getWidth();
+            this.optionsImgH = this.labelOptions.getHeight();
+            this.optionsImgX = ((this.windowWidth - optionsImgW)/2);
 
+            this.exitImgW = this.labelExit.getWidth();
+            this.exitImgH = this.labelExit.getHeight();
+            this.exitImgX = ((this.windowWidth - exitImgW)/2);
 
-            this.bgd2.drawImage(this.logo, imgX, imgY, imgW + imgX, imgH + imgY, 
-                                               0, 0, imgW, imgH, null);
-
-            this.bgd2.drawImage(this.labelPlayGame, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
-                                                0, 0, logoImgW, logoImgH, null);
-
-            this.bgd2.drawImage(this.labelOptions, optionsImgX, optionsImgY, optionsImgW + optionsImgX, optionsImgH + optionsImgY, 
-                                                0, 0, optionsImgW, optionsImgH, null);
-
-            this.bgd2.drawImage(this.labelExit, exitImgX, exitImgY, exitImgW + exitImgX, exitImgH + exitImgY, 
-                                                0, 0, exitImgW, exitImgH, null);
+            this.bgd2.drawImage(this.logo, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
+                                               0, 0, logoImgW, logoImgH, null);
         }
     }
 
@@ -111,6 +110,21 @@ public class Menu {
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
         this.gameRef.getG2D().drawImage(this.selector, 105, 582, null);
 
-        //todo... os demais itens...
+        this.gameRef.getG2D().drawImage(this.labelPlayGame, labelPlayX, labelPlayY, labelPlayW + labelPlayX, labelPlayH + labelPlayY, 
+                                                0, 0, labelPlayW, labelPlayH, null);
+
+        this.gameRef.getG2D().drawImage(this.labelOptions, 
+                                        this.optionsImgX, 
+                                        this.optionsImgY, 
+                                        this.optionsImgW + this.optionsImgX, 
+                                        this.optionsImgH + this.optionsImgY, 
+                                        0, 
+                                        0, 
+                                        this.optionsImgW, 
+                                        this.optionsImgH, 
+                                        null);
+
+        this.gameRef.getG2D().drawImage(this.labelExit, exitImgX, exitImgY, exitImgW + exitImgX, exitImgH + exitImgY, 
+                                            0, 0, exitImgW, exitImgH, null);
     }
 }

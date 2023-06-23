@@ -142,6 +142,12 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\lb_exit.png"));
             stuffs.put("label-exit", image);
 
+            image = ImageIO.read(new File("images\\star_on.png"));
+            stuffs.put("star-on", image);
+
+            image = ImageIO.read(new File("images\\star_off.png"));
+            stuffs.put("star-off", image);
+
             Logger.INFO("read all images...", this);
 
 

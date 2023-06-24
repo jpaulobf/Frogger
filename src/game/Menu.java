@@ -20,6 +20,8 @@ public class Menu {
     private BufferedImage labelPlayGame = null;
     private BufferedImage labelOptions  = null;
     private BufferedImage labelExit     = null;
+    private BufferedImage starOff       = null;
+    private BufferedImage starOn        = null;
     private final Color greenColor      = new Color(51, 152, 101, 255);
     private int labelPlayW              = 0;
     private int labelPlayH              = 0;
@@ -59,6 +61,8 @@ public class Menu {
             this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
             this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
             this.labelExit      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit");
+            this.starOff        = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-off");
+            this.starOn         = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-on");
 
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
@@ -87,6 +91,18 @@ public class Menu {
 
             this.bgd2.drawImage(this.logo, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
                                                0, 0, logoImgW, logoImgH, null);
+
+            int starH = 628;
+            this.bgd2.drawImage(this.starOff, 441, starH, null);
+            this.bgd2.drawImage(this.starOff, 487, starH, null);
+            this.bgd2.drawImage(this.starOff, 534, starH, null);
+            this.bgd2.drawImage(this.starOff, 580, starH, null);
+            this.bgd2.drawImage(this.starOff, 627, starH, null);
+            this.bgd2.drawImage(this.starOff, 673, starH, null);
+            this.bgd2.drawImage(this.starOff, 720, starH, null);
+            this.bgd2.drawImage(this.starOff, 767, starH, null);
+            this.bgd2.drawImage(this.starOff, 817, starH, null);
+            this.bgd2.drawImage(this.starOff, 862, starH, null);
         }
     }
 

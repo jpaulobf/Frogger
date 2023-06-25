@@ -220,6 +220,8 @@ public class Game implements GameInterface {
     public void movement(int keyDirection) {
         if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
             this.frog.move(keyDirection);
+        } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
+            this.menu.move(keyDirection);
         }
     }
 

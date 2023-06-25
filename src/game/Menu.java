@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
+import java.io.Console;
+
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
@@ -10,31 +12,48 @@ import java.awt.GraphicsEnvironment;
 public class Menu {
 
     //Scenario variables
+    private Game gameRef                = null;
     private Graphics2D bgd2             = null;
     private int windowWidth             = 0;
     private int windowHeight            = 0;
-    private Game gameRef                = null;
+    
+    //Buffered Image
+    private VolatileImage bgBufferImage = null;
+
+    //Images
     private BufferedImage selector      = null;
     private BufferedImage logo          = null;
-    private VolatileImage bgBufferImage = null;
     private BufferedImage labelPlayGame = null;
     private BufferedImage labelOptions  = null;
     private BufferedImage labelExit     = null;
     private BufferedImage starOff       = null;
     private BufferedImage starOn        = null;
-    private final Color greenColor      = new Color(51, 152, 101, 255);
+    
+    //Control variables
     private int labelPlayW              = 0;
     private int labelPlayH              = 0;
     private int labelPlayX              = 0;
-    private final int labelPlayY        = 577;
     private int optionsImgW             = 0;
     private int optionsImgH             = 0;
     private int optionsImgX             = 0;
-    private final int optionsImgY       = 710;
     private int exitImgW                = 0;
     private int exitImgH                = 0;
     private int exitImgX                = 0;
-    private final int exitImgY          = 782;
+    private int selectorY               = 0;
+
+    //const
+    private final Color GREEN_COLOR     = new Color(51, 152, 101, 255);
+    private final int LABEL_PLAY_GAME_Y = 577;
+    private final int LABEL_OPTIONS_Y   = 710;
+    private final int LABEL_EXIT_Y      = 782;
+    private final int SELECTOR_X        = 105;
+    private final int BASE_SELECTOR_Y   = 582;
+    private final int SELECTOR_DIFF     = 134;
+    private final int SELECTOR_DIFF_OFF = -63;
+
+    //control
+    private byte currentSelectorPos     = 0;
+    private byte currentStageSelection  = 0; 
 
     /**
      * Constructor
@@ -43,9 +62,20 @@ public class Menu {
      * @param windowHeight
      */
     public Menu(Game game, int windowWidth, int windowHeight) {
+        this.gameRef        = game;
         this.windowHeight   = windowHeight;
         this.windowWidth    = windowWidth;
-        this.gameRef        = game;
+
+        //load the images
+        this.selector       = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
+        this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
+        this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
+        this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
+        this.labelExit      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit");
+        this.starOff        = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-off");
+        this.starOn         = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-on");
+
+        //create the buffered image
         this.drawInBuffer();
     }
 
@@ -55,23 +85,16 @@ public class Menu {
      */
     private void drawInBuffer() {
         if (this.bgd2 == null) {
-            
-            this.selector       = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
-            this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
-            this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
-            this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
-            this.labelExit      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit");
-            this.starOff        = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-off");
-            this.starOn         = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-on");
 
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
             this.bgd2           = (Graphics2D)bgBufferImage.getGraphics();
 
-            //paint all bg in black
-            this.bgd2.setBackground(greenColor);
+            //paint all bg in green
+            this.bgd2.setBackground(GREEN_COLOR);
             this.bgd2.clearRect(0, 0, this.windowWidth, this.windowHeight);
             
+            //calc image positions
             int logoImgW = this.logo.getWidth();
             int logoImgH = this.logo.getHeight();
             int logoImgX = ((this.windowWidth - logoImgW)/2);
@@ -89,11 +112,14 @@ public class Menu {
             this.exitImgH = this.labelExit.getHeight();
             this.exitImgX = ((this.windowWidth - exitImgW)/2);
 
+            //draw static logo
             this.bgd2.drawImage(this.logo, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
                                                0, 0, logoImgW, logoImgH, null);
 
+            
+            //draw static stars
             int starH = 628;
-            this.bgd2.drawImage(this.starOff, 441, starH, null);
+            this.bgd2.drawImage(this.starOn, 441, starH, null);
             this.bgd2.drawImage(this.starOff, 487, starH, null);
             this.bgd2.drawImage(this.starOff, 534, starH, null);
             this.bgd2.drawImage(this.starOff, 580, starH, null);
@@ -111,6 +137,19 @@ public class Menu {
      * @param frametime
      */
     public void update(long frametime) {
+        this.selectorY = BASE_SELECTOR_Y + (this.currentSelectorPos * SELECTOR_DIFF) + ((this.currentSelectorPos == 2)?SELECTOR_DIFF_OFF:0);
+    }
+
+    /**
+     * Foward the keys
+     * @param frametime
+     */
+    public void move(int keyDirection) {
+        if (keyDirection == 40) {
+            this.currentSelectorPos = (byte)(++this.currentSelectorPos%3);
+        } else if (keyDirection == 38) {
+            this.currentSelectorPos = (--this.currentSelectorPos<0)?2:this.currentSelectorPos;
+        }
     }
 
     /**
@@ -119,28 +158,46 @@ public class Menu {
      */
     public void draw(long frametime) {
         //clear the stage
-        this.gameRef.getG2D().setBackground(greenColor);
+        this.gameRef.getG2D().setBackground(GREEN_COLOR);
         this.gameRef.getG2D().clearRect(0, 0, this.windowWidth, this.windowHeight * 2);
 
         //After construct the bg once, copy it to the graphic device
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
-        this.gameRef.getG2D().drawImage(this.selector, 105, 582, null);
 
-        this.gameRef.getG2D().drawImage(this.labelPlayGame, labelPlayX, labelPlayY, labelPlayW + labelPlayX, labelPlayH + labelPlayY, 
-                                                0, 0, labelPlayW, labelPlayH, null);
+        //draw dynamic images
+        //draw selector
+        this.gameRef.getG2D().drawImage(this.selector, SELECTOR_X, this.selectorY, null);
+
+        //draw labels
+        this.gameRef.getG2D().drawImage(this.labelPlayGame, 
+                                        this.labelPlayX, 
+                                        LABEL_PLAY_GAME_Y, 
+                                        this.labelPlayW + this.labelPlayX, 
+                                        this.labelPlayH + LABEL_PLAY_GAME_Y, 
+                                        0, 0, 
+                                        this.labelPlayW, 
+                                        this.labelPlayH, 
+                                        null);
 
         this.gameRef.getG2D().drawImage(this.labelOptions, 
                                         this.optionsImgX, 
-                                        this.optionsImgY, 
+                                        this.LABEL_OPTIONS_Y, 
                                         this.optionsImgW + this.optionsImgX, 
-                                        this.optionsImgH + this.optionsImgY, 
+                                        this.optionsImgH + this.LABEL_OPTIONS_Y, 
                                         0, 
                                         0, 
                                         this.optionsImgW, 
                                         this.optionsImgH, 
                                         null);
 
-        this.gameRef.getG2D().drawImage(this.labelExit, exitImgX, exitImgY, exitImgW + exitImgX, exitImgH + exitImgY, 
-                                            0, 0, exitImgW, exitImgH, null);
+        this.gameRef.getG2D().drawImage(this.labelExit, 
+                                        this.exitImgX, 
+                                        LABEL_EXIT_Y, 
+                                        this.exitImgW + this.exitImgX, 
+                                        this.exitImgH + LABEL_EXIT_Y, 
+                                        0, 0, 
+                                        this.exitImgW, 
+                                        this.exitImgH, 
+                                        null);
     }
 }

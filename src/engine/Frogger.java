@@ -116,8 +116,6 @@ public class Frogger implements Runnable {
             this.fullScreenYPos     = 0;
             this.fullscreen         = fullscreen;
 
-            System.out.println(this.fullscreen);
-
             //////////////////////////////////////////////////////////////////////
             // ->>>  now, for the canvas
             //////////////////////////////////////////////////////////////////////

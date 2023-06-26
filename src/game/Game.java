@@ -43,6 +43,7 @@ public class Game implements GameInterface {
     private volatile boolean mute           = false;
     private volatile boolean canContinue    = true;
     private volatile boolean reseting       = false;
+    private volatile boolean skipDraw       = false;
 
     //width and height of window for base metrics of the game (minus HUD)
     private final int wwm                   = 1344;
@@ -117,6 +118,7 @@ public class Game implements GameInterface {
                         this.framecounter = 0;
                         this.message.showing(false);
                         this.message.toogleStageAnnouncement();
+                        this.skipDraw();
                         this.gameState.setCurrentState(StateMachine.IN_GAME);
                     }
                 }
@@ -182,7 +184,7 @@ public class Game implements GameInterface {
         this.g2d.setBackground(Color.BLACK);
         this.g2d.clearRect(0, 0, this.wwm, this.whm + this.HUDHeight);
 
-        if (!this.reseting) {
+        if (!this.reseting && !this.skipDraw) {
             //////////////////////////////////////////////////////////////////////
             // ->>>  draw the game elements
             //////////////////////////////////////////////////////////////////////
@@ -201,6 +203,8 @@ public class Game implements GameInterface {
             } else if (this.gameState.getCurrentState() == StateMachine.GAME_OVER) {
                 this.gameOver.draw(frametime);
             }
+        } else {
+            this.skipDraw = false;
         }
     }
 
@@ -435,5 +439,35 @@ public class Game implements GameInterface {
      */
     public synchronized void toogleReseting() {
         this.reseting = !this.reseting;
+    }
+
+    /**
+     * Skip 1 frame draw
+     */
+    private void skipDraw() {
+        this.skipDraw = true;
+    }
+
+    /**
+     * Exit game
+     */
+    public void exitGame() {
+        System.exit(0);
+    }
+
+    /**
+     * set game state to options
+     */
+    public void changeGameStateToOption() {
+        this.skipDraw();
+        this.gameState.setCurrentState(StateMachine.OPTIONS);
+    }
+
+    /**
+     * set game state to options
+     */
+    public void changeGameStateToInGame() {
+        this.skipDraw();
+        this.gameState.setCurrentState(StateMachine.STAGING);
     }
 }

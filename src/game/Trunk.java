@@ -10,7 +10,7 @@ import util.LoadingStuffs;
 /**
  * Tree trunk (individual) class
  */
-public class Trunk  extends SpriteImpl {
+public class Trunk extends SpriteImpl {
 
     //define the g2d and the trunks-images
     private BufferedImage trunksTiles       = null;

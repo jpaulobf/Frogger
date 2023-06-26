@@ -144,11 +144,21 @@ public class Menu {
      * Foward the keys
      * @param frametime
      */
-    public void move(int keyDirection) {
-        if (keyDirection == 40) {
+    public void move(int key) {
+        if (key == 40) {
             this.currentSelectorPos = (byte)(++this.currentSelectorPos%3);
-        } else if (keyDirection == 38) {
+        } else if (key == 38) {
             this.currentSelectorPos = (--this.currentSelectorPos<0)?2:this.currentSelectorPos;
+        }
+
+        if ((key == 10 || key == 32)) {
+            if (this.currentSelectorPos == 2) {
+                this.gameRef.exitGame();
+            } else if (this.currentSelectorPos == 1) {
+                this.gameRef.changeGameStateToOption();
+            } else if (this.currentSelectorPos == 0) {
+                this.gameRef.changeGameStateToInGame();
+            }
         }
     }
 

@@ -3,8 +3,6 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
-import java.io.Console;
-
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
@@ -50,6 +48,7 @@ public class Menu {
     private final int BASE_SELECTOR_Y   = 582;
     private final int SELECTOR_DIFF     = 134;
     private final int SELECTOR_DIFF_OFF = -63;
+    private final int starH             = 628;
 
     //control
     private byte currentSelectorPos     = 0;
@@ -118,7 +117,6 @@ public class Menu {
 
             
             //draw static stars
-            int starH = 628;
             this.bgd2.drawImage(this.starOn, 441, starH, null);
             this.bgd2.drawImage(this.starOff, 487, starH, null);
             this.bgd2.drawImage(this.starOff, 534, starH, null);
@@ -158,6 +156,14 @@ public class Menu {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
                 this.gameRef.changeGameStateToInGame();
+            }
+        }
+
+        if (this.currentSelectorPos == 0) {
+            if (key == 39) {
+                this.currentStageSelection = (byte)(++this.currentStageSelection%10);
+            } else if (key == 37) {
+                this.currentStageSelection = (--this.currentStageSelection<0)?9:this.currentStageSelection;
             }
         }
     }
@@ -209,5 +215,29 @@ public class Menu {
                                         this.exitImgW, 
                                         this.exitImgH, 
                                         null);
+
+        switch (this.currentStageSelection)
+        {
+            case 9:
+                this.gameRef.getG2D().drawImage(this.starOn, 862, starH, null);
+            case 8:
+                this.gameRef.getG2D().drawImage(this.starOn, 817, starH, null);
+            case 7:
+                this.gameRef.getG2D().drawImage(this.starOn, 767, starH, null);
+            case 6:
+                this.gameRef.getG2D().drawImage(this.starOn, 720, starH, null);
+            case 5:
+                this.gameRef.getG2D().drawImage(this.starOn, 673, starH, null);
+            case 4:
+                this.gameRef.getG2D().drawImage(this.starOn, 627, starH, null);
+            case 3:
+                this.gameRef.getG2D().drawImage(this.starOn, 580, starH, null);
+            case 2:
+                this.gameRef.getG2D().drawImage(this.starOn, 534, starH, null);
+            case 1:
+                this.gameRef.getG2D().drawImage(this.starOn, 487, starH, null);
+            case 0:
+                this.gameRef.getG2D().drawImage(this.starOn, 441, starH, null);
+        }
     }
 }

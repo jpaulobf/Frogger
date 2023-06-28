@@ -360,10 +360,15 @@ public class Game implements GameInterface {
         this.frog.frogReset();
     }
 
+    public synchronized void nextStage() {
+        int next = Stages.CURRENT_STAGE[0] + 1;
+        this.setCurrentStage(next);
+    }
+
     /** 
      * go to the next stage 
      */
-    public synchronized void nextStage() {
+    public synchronized void setCurrentStage(int currentStage) {
 
         //disable elements update
         this.toogleReseting();
@@ -373,7 +378,7 @@ public class Game implements GameInterface {
         this.timer.reset();
         this.frog.frogReset();
 
-        Stages.CURRENT_STAGE[0]++;
+        Stages.CURRENT_STAGE[0] = currentStage;
         this.scenario.nextStage();
         this.sidewalkSnake.nextStage();
 
@@ -466,8 +471,9 @@ public class Game implements GameInterface {
     /**
      * set game state to options
      */
-    public void changeGameStateToInGame() {
+    public void changeGameStateToInGame(int currentStage) {
         this.skipDraw();
+        this.setCurrentStage(currentStage);
         this.gameState.setCurrentState(StateMachine.STAGING);
     }
 }

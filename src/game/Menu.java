@@ -159,7 +159,7 @@ public class Menu {
             } else if (this.currentSelectorPos == 1) {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
-                this.gameRef.changeGameStateToInGame(this.currentStageSelection);
+                this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
             }
         }
 

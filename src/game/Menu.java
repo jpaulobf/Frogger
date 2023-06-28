@@ -52,7 +52,11 @@ public class Menu {
 
     //control
     private byte currentSelectorPos     = 0;
-    private byte currentStageSelection  = 0; 
+    private byte currentStageSelection  = 0;
+
+    //TODO: Music & SoundFX
+
+    
 
     /**
      * Constructor
@@ -155,7 +159,7 @@ public class Menu {
             } else if (this.currentSelectorPos == 1) {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
-                this.gameRef.changeGameStateToInGame();
+                this.gameRef.changeGameStateToInGame(this.currentStageSelection);
             }
         }
 

@@ -373,6 +373,10 @@ public class Game implements GameInterface {
         //disable elements update
         this.toogleReseting();
 
+        //pause timer & frog
+        this.timer.tooglePause();
+        this.frog.tooglePause();
+
         this.scenario.getDockers().reset();
         this.scenario.getTrunks().getTrunkSnake().reset();
         this.timer.reset();

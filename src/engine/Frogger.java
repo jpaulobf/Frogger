@@ -163,7 +163,7 @@ public class Frogger implements Runnable {
                 public synchronized void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == 113) {toogleFullscreenResolution();}
                     if (e.getKeyCode() == 114) {toogleFullscreen();}
-                    if (e.getKeyCode() == 27) {setVisible(false); System.exit(0);}
+                    // if (e.getKeyCode() == 27) {setVisible(false); System.exit(0);}
                     game.keyReleased(e.getKeyCode());
                 }
             });     

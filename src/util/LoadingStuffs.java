@@ -148,6 +148,9 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\star_off.png"));
             stuffs.put("star-off", image);
 
+            image = ImageIO.read(new File("images\\options_logo.png"));
+            stuffs.put("options-logo", image);
+
             Logger.INFO("read all images...", this);
 
 

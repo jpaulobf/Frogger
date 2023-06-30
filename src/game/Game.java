@@ -35,6 +35,7 @@ public class Game implements GameInterface {
     private Frog frog                       = null;
     private GameOver gameOver               = null;
     private Menu menu                       = null;
+    private Options options                 = null;
     private Message message                 = null;
     private Timer timer                     = null;
     private volatile Audio theme            = null;
@@ -79,6 +80,7 @@ public class Game implements GameInterface {
         this.message        = new Message(this, this.wwm, this.completeWhm);
         this.timer          = new Timer(this, this.wwm, this.scoreHeight + this.whm);
         this.menu           = new Menu(this, this.wwm, this.whm);
+        this.options        = new Options(this, this.wwm, this.whm);
         this.theme          = (Audio)LoadingStuffs.getInstance().getStuff("theme");
         this.gameoverTheme  = (Audio)LoadingStuffs.getInstance().getStuff("gameover-theme");
     }
@@ -126,6 +128,15 @@ public class Game implements GameInterface {
                 this.framecounter += frametime;
 
                 this.menu.update(frametime);
+                if (this.framecounter == frametime) { //update just one time
+                    
+                } else {
+                }
+                
+            } else if (this.gameState.getCurrentState() == StateMachine.OPTIONS) {
+                this.framecounter += frametime;
+
+                this.options.update(frametime);
                 if (this.framecounter == frametime) { //update just one time
                     
                 } else {
@@ -192,6 +203,8 @@ public class Game implements GameInterface {
                 this.message.draw(frametime);
             } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
                 this.menu.draw(frametime);
+            } else if (this.gameState.getCurrentState() == StateMachine.OPTIONS) {
+                this.options.draw(frametime);
             } else if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
                 this.score.draw(frametime);
                 this.scenario.draw(frametime);
@@ -226,6 +239,8 @@ public class Game implements GameInterface {
             this.frog.move(keyDirection);
         } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
             this.menu.move(keyDirection);
+        } else if (this.gameState.getCurrentState() == StateMachine.OPTIONS) {
+            this.options.move(keyDirection);
         }
     }
 
@@ -479,5 +494,13 @@ public class Game implements GameInterface {
         this.skipDraw();
         this.setCurrentStage(currentStage);
         this.gameState.setCurrentState(StateMachine.STAGING);
+    }
+
+    /**
+     * set game state to menu
+     */
+    public void changeGameStateToMenu() {
+        this.skipDraw();
+        this.gameState.setCurrentState(StateMachine.MENU);
     }
 }

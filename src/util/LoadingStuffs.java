@@ -151,6 +151,24 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\options_logo.png"));
             stuffs.put("options-logo", image);
 
+            image = ImageIO.read(new File("images\\label_game_music.png"));
+            stuffs.put("label-play-music", image);
+
+            image = ImageIO.read(new File("images\\label_music_volume.png"));
+            stuffs.put("label-music-volume", image);
+
+            image = ImageIO.read(new File("images\\label_game_sfx.png"));
+            stuffs.put("label-play-sfx", image);
+
+            image = ImageIO.read(new File("images\\label_sfx_volume.png"));
+            stuffs.put("label-sfx-volume", image);
+
+            image = ImageIO.read(new File("images\\label_how_many_lives.png"));
+            stuffs.put("label-how-many-lives", image);
+
+            image = ImageIO.read(new File("images\\label_exit_options.png"));
+            stuffs.put("label-exit-options", image);
+
             Logger.INFO("read all images...", this);
 
 

@@ -36,16 +36,16 @@ public class Options {
      * @param windowHeight
      */
     public Options(Game game, int windowWidth, int windowHeight) {
-        this.windowHeight   = windowHeight;
-        this.windowWidth    = windowWidth;
-        this.gameRef        = game;
+        this.windowHeight       = windowHeight;
+        this.windowWidth        = windowWidth;
+        this.gameRef            = game;
 
-        this.labelPlayMusic    = null;
-        this.labelMusicVolume  = null;
-        this.labelPlaySFX      = null;
-        this.labelSFXVolume    = null;
-        this.labelHowMany      = null;
-        this.labelExit         = null;
+        this.labelPlayMusic    = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-music");
+        this.labelMusicVolume  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-music-volume");
+        this.labelPlaySFX      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-sfx");
+        this.labelSFXVolume    = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-sfx-volume");
+        this.labelHowMany      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-how-many-lives");
+        this.labelExit         = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit-options");
 
         this.drawBuffer();
     }
@@ -95,6 +95,17 @@ public class Options {
 
         //After construct the bg once, copy it to the graphic device
         this.gameRef.getG2D().drawImage(this.bgBufferImage, 0, 0, null);
+
+
+        this.gameRef.getG2D().drawImage(this.labelPlayMusic, 128, 280, null);
+        this.gameRef.getG2D().drawImage(this.labelMusicVolume, 128, 370, null);
+        this.gameRef.getG2D().drawImage(this.labelPlaySFX, 128, 459, null);
+        this.gameRef.getG2D().drawImage(this.labelSFXVolume, 128, 548, null);
+        this.gameRef.getG2D().drawImage(this.labelHowMany, 128, 637, null);
+        this.gameRef.getG2D().drawImage(this.labelExit, 38, 817, null);
+
+
+
     }
 
     /**

@@ -39,6 +39,14 @@ public class Options {
         this.windowHeight   = windowHeight;
         this.windowWidth    = windowWidth;
         this.gameRef        = game;
+
+        this.labelPlayMusic    = null;
+        this.labelMusicVolume  = null;
+        this.labelPlaySFX      = null;
+        this.labelSFXVolume    = null;
+        this.labelHowMany      = null;
+        this.labelExit         = null;
+
         this.drawBuffer();
     }
 

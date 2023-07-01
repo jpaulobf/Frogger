@@ -13,13 +13,21 @@ import java.awt.GraphicsEnvironment;
 public class Options {
 
     //Scenario variables
-    private Graphics2D bgd2             = null;
-    private int windowWidth             = 0;
-    private int windowHeight            = 0;
-    private VolatileImage bgBufferImage = null;
-    private BufferedImage optionsLogo   = null;
-    private Game gameRef                = null;
-    private final Color GREEN_COLOR     = new Color(51, 152, 101, 255);
+    private Graphics2D bgd2                 = null;
+    private int windowWidth                 = 0;
+    private int windowHeight                = 0;
+    private VolatileImage bgBufferImage     = null;
+    private BufferedImage optionsLogo       = null;
+
+    private BufferedImage labelPlayMusic    = null;
+    private BufferedImage labelMusicVolume  = null;
+    private BufferedImage labelPlaySFX      = null;
+    private BufferedImage labelSFXVolume    = null;
+    private BufferedImage labelHowMany      = null;
+    private BufferedImage labelExit         = null;
+
+    private Game gameRef                    = null;
+    private final Color GREEN_COLOR         = new Color(51, 152, 101, 255);
 
     /**
      * Constructor
@@ -53,8 +61,8 @@ public class Options {
             
             int imgW = this.optionsLogo.getWidth();
             int imgH = this.optionsLogo.getHeight();
-            int imgX = ((this.windowWidth - imgW)/2);
-            int imgY = ((this.windowHeight - imgH)/2);
+            int imgX = 800;
+            int imgY = 70;
 
             this.bgd2.drawImage(this.optionsLogo, imgX, imgY, imgW + imgX, imgH + imgY, 
                                                   0, 0, imgW, imgH, null);

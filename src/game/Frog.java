@@ -525,7 +525,7 @@ public class Frog extends SpriteImpl {
                 this.framecounter   = 0;
                 
                 //after n seconds
-                this.gameReference.nextStage();
+                this.gameReference.nextStage(true);
 
                 //hide the message & unpause
                 this.gameReference.getMessages().toogleShowing();

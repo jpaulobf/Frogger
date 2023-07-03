@@ -375,22 +375,25 @@ public class Game implements GameInterface {
         this.frog.frogReset();
     }
 
-    public synchronized void nextStage() {
+    public synchronized void nextStage(boolean togglePause) {
         int next = Stages.CURRENT_STAGE[0] + 1;
-        this.setCurrentStage(next);
+        this.setCurrentStage(next, togglePause);
     }
 
     /** 
      * go to the next stage 
      */
-    public synchronized void setCurrentStage(int currentStage) {
+    public synchronized void setCurrentStage(int currentStage, boolean togglePause) {
 
         //disable elements update
         this.toogleReseting();
 
-        //pause timer & frog
-        this.timer.tooglePause();
-        this.frog.tooglePause();
+        if (!togglePause)
+        {
+            //pause timer & frog
+            this.timer.tooglePause();
+            this.frog.tooglePause();
+        }
 
         this.scenario.getDockers().reset();
         this.scenario.getTrunks().getTrunkSnake().reset();
@@ -436,7 +439,7 @@ public class Game implements GameInterface {
             if (keyCode == 77) {this.toogleMuteTheme();}
             if (keyCode == 80) {this.tooglePause();}
             if (keyCode == 82) {this.softReset();}
-            if (keyCode == 84) {this.nextStage();}
+            if (keyCode == 84) {this.nextStage(false);}
         }
     }
 
@@ -492,7 +495,7 @@ public class Game implements GameInterface {
      */
     public void changeGameStateToInGame(int currentStage) {
         this.skipDraw();
-        this.setCurrentStage(currentStage);
+        this.setCurrentStage(currentStage, false);
         this.gameState.setCurrentState(StateMachine.STAGING);
     }
 

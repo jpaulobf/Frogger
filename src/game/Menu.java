@@ -99,7 +99,6 @@ public class Menu {
             
             //calc image positions
             int logoImgW = this.logo.getWidth();
-            int logoImgH = this.logo.getHeight();
             int logoImgX = ((this.windowWidth - logoImgW)/2);
             int logoImgY = 84;
 
@@ -116,10 +115,8 @@ public class Menu {
             this.exitImgX = ((this.windowWidth - exitImgW)/2);
 
             //draw static logo
-            this.bgd2.drawImage(this.logo, logoImgX, logoImgY, logoImgW + logoImgX, logoImgH + logoImgY, 
-                                               0, 0, logoImgW, logoImgH, null);
+            this.bgd2.drawImage(this.logo, logoImgX, logoImgY, null);
 
-            
             //draw static stars
             this.bgd2.drawImage(this.starOn, 441, starH, null);
             this.bgd2.drawImage(this.starOff, 487, starH, null);

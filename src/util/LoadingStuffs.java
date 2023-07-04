@@ -171,7 +171,6 @@ public class LoadingStuffs {
 
             Logger.INFO("read all images...", this);
 
-
             Audio audio = new Audio("audio\\jump.wav", 0);
             if (audio != null && audio.isReady()) {
                 stuffs.put("jumpAudio", audio);

@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 
 /**
- * 
+ * Class representing the Option screen
  */
 public class Options {
 
@@ -28,9 +28,22 @@ public class Options {
     private BufferedImage labelSFXVolume    = null;
     private BufferedImage labelHowMany      = null;
     private BufferedImage labelExit         = null;
+    private BufferedImage [] slideOff       = new BufferedImage[6];
+    private BufferedImage [] slideOn        = new BufferedImage[6];
+    private BufferedImage toggleOn          = null;
+    private BufferedImage toggleOff         = null;
+    private short slideMusicXInit           = 1111;
+    private short slideMusicYInit           = 374;
+    private short slideSFXXInit             = 1111;
+    private short slideSFXYInit             = 554;
+    private short slideXOffset              = 31;
+    private short slideYOffset              = 4;
+    private short [] slideMusicX            = {slideMusicXInit, (short)(slideMusicXInit+(1*slideXOffset)), (short)(slideMusicXInit+(2*slideXOffset)), (short)(slideMusicXInit+(3*slideXOffset)), (short)(slideMusicXInit+(4*slideXOffset)), (short)(slideMusicXInit+(5*slideXOffset))};
+    private short [] slideMusicY            = {slideMusicYInit, (short)(slideMusicYInit+(1*slideYOffset)), (short)(slideMusicYInit+(2*slideYOffset)), (short)(slideMusicYInit+(3*slideYOffset)), (short)(slideMusicYInit+(4*slideYOffset)), (short)(slideMusicYInit+(5*slideYOffset))};
+    private short [] slideSFXX              = {slideSFXXInit, (short)(slideSFXXInit+(1*slideXOffset)), (short)(slideSFXXInit+(2*slideXOffset)), (short)(slideSFXXInit+(3*slideXOffset)), (short)(slideSFXXInit+(4*slideXOffset)), (short)(slideSFXXInit+(5*slideXOffset))};
+    private short [] slideSFXY              = {slideSFXYInit, (short)(slideSFXYInit+(1*slideYOffset)), (short)(slideSFXYInit+(2*slideYOffset)), (short)(slideSFXYInit+(3*slideYOffset)), (short)(slideSFXYInit+(4*slideYOffset)), (short)(slideSFXYInit+(5*slideYOffset))};
 
     //Control variables
-    
     private final short OG_SELECTOR_X       = 40;
     private final short OG_SELECTOR_Y       = 285;
     private final short X_OFFSET            = -20;
@@ -54,14 +67,27 @@ public class Options {
         this.windowWidth        = windowWidth;
         this.gameRef            = game;
 
-        this.selector          = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
-        this.labelPlayMusic    = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-music");
-        this.labelMusicVolume  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-music-volume");
-        this.labelPlaySFX      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-sfx");
-        this.labelSFXVolume    = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-sfx-volume");
-        this.labelHowMany      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-how-many-lives");
-        this.labelExit         = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit-options");
+        this.selector           = LoadingStuffs.getInstance().getImage("selector");
+        this.labelPlayMusic     = LoadingStuffs.getInstance().getImage("label-play-music");
+        this.labelMusicVolume   = LoadingStuffs.getInstance().getImage("label-music-volume");
+        this.labelPlaySFX       = LoadingStuffs.getInstance().getImage("label-play-sfx");
+        this.labelSFXVolume     = LoadingStuffs.getInstance().getImage("label-sfx-volume");
+        this.labelHowMany       = LoadingStuffs.getInstance().getImage("label-how-many-lives");
+        this.labelExit          = LoadingStuffs.getInstance().getImage("label-exit-options");
+        this.toggleOn           = LoadingStuffs.getInstance().getImage("toggle-on");
+        this.toggleOff          = LoadingStuffs.getInstance().getImage("toggle-off");
 
+        //load images from slide off
+        for (int i = 0; i < slideOff.length; i++) {
+            this.slideOff[i]    = LoadingStuffs.getInstance().getImage("slide-off-" + i);    
+        } 
+
+        //load images from slide on
+        for (int i = 0; i < slideOn.length; i++) {
+            this.slideOn[i]     = LoadingStuffs.getInstance().getImage("slide-on-" + i);    
+        }
+
+        //draw the static part
         this.drawBuffer();
     }
 
@@ -72,7 +98,7 @@ public class Options {
     private void drawBuffer() {
         if (this.bgd2 == null) {
             
-            this.optionsLogo = (BufferedImage)LoadingStuffs.getInstance().getStuff("options-logo");
+            this.optionsLogo = LoadingStuffs.getInstance().getImage("options-logo");
 
             //create a backbuffer image for doublebuffer
             this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
@@ -122,6 +148,22 @@ public class Options {
         this.gameRef.getG2D().drawImage(this.labelSFXVolume, 128, 550, null);
         this.gameRef.getG2D().drawImage(this.labelHowMany, 128, 640, null);
         this.gameRef.getG2D().drawImage(this.labelExit, 38, 817, null);
+
+        //draw slider
+        for (int i = 0; i < slideOff.length; i++) {
+            this.gameRef.getG2D().drawImage(this.slideOff[i], slideMusicX[i], slideMusicY[i], null);
+        }
+
+        for (int i = 0; i < slideOff.length; i++) {
+            this.gameRef.getG2D().drawImage(this.slideOff[i], slideSFXX[i], slideSFXY[i], null);
+        }
+
+        //draw toggle music
+        this.gameRef.getG2D().drawImage(this.toggleOn, 1111, 280, null);
+
+        //draw toggle sfx
+        this.gameRef.getG2D().drawImage(this.toggleOn, 1111, 459, null);
+        
     }
 
     /**

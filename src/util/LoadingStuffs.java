@@ -169,6 +169,30 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\label_exit_options.png"));
             stuffs.put("label-exit-options", image);
 
+            image = ImageIO.read(new File("images\\slide_off_6.png"));
+            stuffs.put("slide-off-0", image);
+
+            image = ImageIO.read(new File("images\\slide_off_5.png"));
+            stuffs.put("slide-off-1", image);
+
+            image = ImageIO.read(new File("images\\slide_off_4.png"));
+            stuffs.put("slide-off-2", image);
+
+            image = ImageIO.read(new File("images\\slide_off_3.png"));
+            stuffs.put("slide-off-3", image);
+
+            image = ImageIO.read(new File("images\\slide_off_2.png"));
+            stuffs.put("slide-off-4", image);
+
+            image = ImageIO.read(new File("images\\slide_off_1.png"));
+            stuffs.put("slide-off-5", image);
+
+            image = ImageIO.read(new File("images\\toggle_on.png"));
+            stuffs.put("toggle-on", image);
+
+            image = ImageIO.read(new File("images\\toggle_off.png"));
+            stuffs.put("toggle-off", image);
+
             Logger.INFO("read all images...", this);
 
             Audio audio = new Audio("audio\\jump.wav", 0);
@@ -252,6 +276,10 @@ public class LoadingStuffs {
      */
     public Object getStuff(String objectName) {
         return (this.stuffs.get(objectName));
+    }
+
+    public BufferedImage getImage(String objectName) {
+        return (BufferedImage)this.getStuff(objectName);
     }
 
     /**

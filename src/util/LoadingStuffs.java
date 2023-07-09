@@ -169,29 +169,74 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\label_exit_options.png"));
             stuffs.put("label-exit-options", image);
 
-            image = ImageIO.read(new File("images\\slide_off_6.png"));
+            image = ImageIO.read(new File("images\\slide_off_1.png"));
             stuffs.put("slide-off-0", image);
 
-            image = ImageIO.read(new File("images\\slide_off_5.png"));
+            image = ImageIO.read(new File("images\\slide_off_2.png"));
             stuffs.put("slide-off-1", image);
 
-            image = ImageIO.read(new File("images\\slide_off_4.png"));
+            image = ImageIO.read(new File("images\\slide_off_3.png"));
             stuffs.put("slide-off-2", image);
 
-            image = ImageIO.read(new File("images\\slide_off_3.png"));
+            image = ImageIO.read(new File("images\\slide_off_4.png"));
             stuffs.put("slide-off-3", image);
 
-            image = ImageIO.read(new File("images\\slide_off_2.png"));
+            image = ImageIO.read(new File("images\\slide_off_5.png"));
             stuffs.put("slide-off-4", image);
 
-            image = ImageIO.read(new File("images\\slide_off_1.png"));
+            image = ImageIO.read(new File("images\\slide_off_6.png"));
             stuffs.put("slide-off-5", image);
+
+            image = ImageIO.read(new File("images\\slide_on_1.png"));
+            stuffs.put("slide-on-0", image);
+
+            image = ImageIO.read(new File("images\\slide_on_2.png"));
+            stuffs.put("slide-on-1", image);
+
+            image = ImageIO.read(new File("images\\slide_on_3.png"));
+            stuffs.put("slide-on-2", image);
+
+            image = ImageIO.read(new File("images\\slide_on_4.png"));
+            stuffs.put("slide-on-3", image);
+
+            image = ImageIO.read(new File("images\\slide_on_5.png"));
+            stuffs.put("slide-on-4", image);
+
+            image = ImageIO.read(new File("images\\slide_on_6.png"));
+            stuffs.put("slide-on-5", image);
 
             image = ImageIO.read(new File("images\\toggle_on.png"));
             stuffs.put("toggle-on", image);
 
             image = ImageIO.read(new File("images\\toggle_off.png"));
             stuffs.put("toggle-off", image);
+
+            image = ImageIO.read(new File("images\\live_1.png"));
+            stuffs.put("live-1", image);
+
+            image = ImageIO.read(new File("images\\live_2.png"));
+            stuffs.put("live-2", image);
+
+            image = ImageIO.read(new File("images\\live_3.png"));
+            stuffs.put("live-3", image);
+
+            image = ImageIO.read(new File("images\\live_4.png"));
+            stuffs.put("live-4", image);
+
+            image = ImageIO.read(new File("images\\live_5.png"));
+            stuffs.put("live-5", image);
+
+            image = ImageIO.read(new File("images\\live_6.png"));
+            stuffs.put("live-6", image);
+
+            image = ImageIO.read(new File("images\\live_7.png"));
+            stuffs.put("live-7", image);
+
+            image = ImageIO.read(new File("images\\live_8.png"));
+            stuffs.put("live-8", image);
+
+            image = ImageIO.read(new File("images\\live_9.png"));
+            stuffs.put("live-9", image);
 
             Logger.INFO("read all images...", this);
 

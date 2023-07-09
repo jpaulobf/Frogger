@@ -30,18 +30,24 @@ public class Options {
     private BufferedImage labelExit         = null;
     private BufferedImage [] slideOff       = new BufferedImage[6];
     private BufferedImage [] slideOn        = new BufferedImage[6];
+    private BufferedImage [] live           = new BufferedImage[9];
     private BufferedImage toggleOn          = null;
     private BufferedImage toggleOff         = null;
+
+    private BufferedImage toggleMusicBt     = null;
+    private BufferedImage toggleSFXBt       = null;
+
     private short slideMusicXInit           = 1111;
     private short slideMusicYInit           = 374;
     private short slideSFXXInit             = 1111;
     private short slideSFXYInit             = 554;
     private short slideXOffset              = 31;
     private short slideYOffset              = 4;
-    private short [] slideMusicX            = {slideMusicXInit, (short)(slideMusicXInit+(1*slideXOffset)), (short)(slideMusicXInit+(2*slideXOffset)), (short)(slideMusicXInit+(3*slideXOffset)), (short)(slideMusicXInit+(4*slideXOffset)), (short)(slideMusicXInit+(5*slideXOffset))};
-    private short [] slideMusicY            = {slideMusicYInit, (short)(slideMusicYInit+(1*slideYOffset)), (short)(slideMusicYInit+(2*slideYOffset)), (short)(slideMusicYInit+(3*slideYOffset)), (short)(slideMusicYInit+(4*slideYOffset)), (short)(slideMusicYInit+(5*slideYOffset))};
-    private short [] slideSFXX              = {slideSFXXInit, (short)(slideSFXXInit+(1*slideXOffset)), (short)(slideSFXXInit+(2*slideXOffset)), (short)(slideSFXXInit+(3*slideXOffset)), (short)(slideSFXXInit+(4*slideXOffset)), (short)(slideSFXXInit+(5*slideXOffset))};
-    private short [] slideSFXY              = {slideSFXYInit, (short)(slideSFXYInit+(1*slideYOffset)), (short)(slideSFXYInit+(2*slideYOffset)), (short)(slideSFXYInit+(3*slideYOffset)), (short)(slideSFXYInit+(4*slideYOffset)), (short)(slideSFXYInit+(5*slideYOffset))};
+
+    private short [] slideMusicX            = {(short)(slideMusicXInit+(5*slideXOffset)), (short)(slideMusicXInit+(4*slideXOffset)), (short)(slideMusicXInit+(3*slideXOffset)), (short)(slideMusicXInit+(2*slideXOffset)), (short)(slideMusicXInit+(1*slideXOffset)), slideMusicXInit};
+    private short [] slideMusicY            = {(short)(slideMusicYInit+(5*slideYOffset)), (short)(slideMusicYInit+(4*slideYOffset)), (short)(slideMusicYInit+(3*slideYOffset)), (short)(slideMusicYInit+(2*slideYOffset)), (short)(slideMusicYInit+(1*slideYOffset)), slideMusicYInit};
+    private short [] slideSFXX              = {(short)(slideSFXXInit+(5*slideXOffset)), (short)(slideSFXXInit+(4*slideXOffset)), (short)(slideSFXXInit+(3*slideXOffset)), (short)(slideSFXXInit+(2*slideXOffset)), (short)(slideSFXXInit+(1*slideXOffset)), slideSFXXInit};
+    private short [] slideSFXY              = {(short)(slideSFXYInit+(5*slideYOffset)), (short)(slideSFXYInit+(4*slideYOffset)), (short)(slideSFXYInit+(3*slideYOffset)), (short)(slideSFXYInit+(2*slideYOffset)), (short)(slideSFXYInit+(1*slideYOffset)), slideSFXYInit};
 
     //Control variables
     private final short OG_SELECTOR_X       = 40;
@@ -50,7 +56,12 @@ public class Options {
     private short selectorX                 = 40;
     private short selectorY                 = 285;
     private byte currentSelectorPos         = 0;
-    
+    private boolean toggleMusic             = true;
+    private boolean toggleSFX               = true;
+    private byte musicVolume                = 5;
+    private byte sfxVolume                  = 5;
+    private byte lives                      = 4;
+
     //const
     private final Color GREEN_COLOR         = new Color(51, 152, 101, 255);
     private final short LOGO_X = 800;
@@ -79,12 +90,16 @@ public class Options {
 
         //load images from slide off
         for (int i = 0; i < slideOff.length; i++) {
-            this.slideOff[i]    = LoadingStuffs.getInstance().getImage("slide-off-" + i);    
+            this.slideOff[i] = LoadingStuffs.getInstance().getImage("slide-off-" + i);    
         } 
 
         //load images from slide on
         for (int i = 0; i < slideOn.length; i++) {
-            this.slideOn[i]     = LoadingStuffs.getInstance().getImage("slide-on-" + i);    
+            this.slideOn[i] = LoadingStuffs.getInstance().getImage("slide-on-" + i);    
+        }
+
+        for (int i = 0; i < live.length; i++) {
+            this.live[i] = LoadingStuffs.getInstance().getImage("live-" + (i + 1));    
         }
 
         //draw the static part
@@ -101,8 +116,11 @@ public class Options {
             this.optionsLogo = LoadingStuffs.getInstance().getImage("options-logo");
 
             //create a backbuffer image for doublebuffer
-            this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
-            this.bgd2           = (Graphics2D)bgBufferImage.getGraphics();
+            this.bgBufferImage  = GraphicsEnvironment.getLocalGraphicsEnvironment()
+                                                     .getDefaultScreenDevice()
+                                                     .getDefaultConfiguration()
+                                                     .createCompatibleVolatileImage(this.windowWidth, this.windowHeight);
+            this.bgd2 = (Graphics2D)bgBufferImage.getGraphics();
 
             //paint all bg in black
             this.bgd2.setBackground(GREEN_COLOR);
@@ -110,6 +128,16 @@ public class Options {
             
             //draw
             this.bgd2.drawImage(this.optionsLogo, LOGO_X, LOGO_Y, null);
+
+            //draw slider
+            for (byte i = 0; i < slideOff.length; i++) {
+                this.bgd2.drawImage(this.slideOff[i], slideMusicX[i], slideMusicY[i], null);
+            }
+
+            //draw slider
+            for (byte i = 0; i < slideOff.length; i++) {
+                this.bgd2.drawImage(this.slideOff[i], slideSFXX[i], slideSFXY[i], null);
+            }
         }
     }
 
@@ -124,6 +152,10 @@ public class Options {
             this.selectorX = OG_SELECTOR_X + X_OFFSET;
             this.selectorY = (short)(OG_SELECTOR_Y + 93);
         }
+
+        //control toggle buttom image to display
+        this.toggleMusicBt  = (this.toggleMusic)?this.toggleOn:this.toggleOff;
+        this.toggleSFXBt    = (this.toggleSFX)?this.toggleOn:this.toggleOff;
     }
 
     /**
@@ -149,21 +181,24 @@ public class Options {
         this.gameRef.getG2D().drawImage(this.labelHowMany, 128, 640, null);
         this.gameRef.getG2D().drawImage(this.labelExit, 38, 817, null);
 
-        //draw slider
-        for (int i = 0; i < slideOff.length; i++) {
-            this.gameRef.getG2D().drawImage(this.slideOff[i], slideMusicX[i], slideMusicY[i], null);
+        //draw active slider
+        for (byte i = 0; i <= this.musicVolume; i++) {
+            this.gameRef.getG2D().drawImage(this.slideOn[i], slideMusicX[i], slideMusicY[i], null);
         }
 
-        for (int i = 0; i < slideOff.length; i++) {
-            this.gameRef.getG2D().drawImage(this.slideOff[i], slideSFXX[i], slideSFXY[i], null);
+        //draw active slider
+        for (byte i = 0; i <= this.sfxVolume; i++) {
+            this.gameRef.getG2D().drawImage(this.slideOn[i], slideSFXX[i], slideSFXY[i], null);
         }
 
         //draw toggle music
-        this.gameRef.getG2D().drawImage(this.toggleOn, 1111, 280, null);
+        this.gameRef.getG2D().drawImage(this.toggleMusicBt, 1111, 280, null);
 
         //draw toggle sfx
-        this.gameRef.getG2D().drawImage(this.toggleOn, 1111, 459, null);
-        
+        this.gameRef.getG2D().drawImage(this.toggleSFXBt, 1111, 459, null);
+
+        //draw lives
+        this.gameRef.getG2D().drawImage(this.live[(lives-1)], 1111, 641, null);
     }
 
     /**
@@ -179,9 +214,41 @@ public class Options {
                 this.currentSelectorPos = (--this.currentSelectorPos<0)?5:this.currentSelectorPos;
             } else if (key == 40) {
                 this.currentSelectorPos = (byte)(++this.currentSelectorPos%6);
-            } else if (key == 10 || key == 32) {
+            } else if (this.currentSelectorPos == 5 && (key == 10 || key == 32)) {
                 this.currentSelectorPos = 0;
                 this.gameRef.changeGameStateToMenu();
+            }
+
+            if (this.currentSelectorPos == 0) {
+                if (key == 39 || key == 37) {
+                    this.toggleMusic = !this.toggleMusic;
+                }
+            } else if (this.currentSelectorPos == 2) {
+                if (key == 39 || key == 37) {
+                    this.toggleSFX = !this.toggleSFX;
+                }
+            } else if (this.currentSelectorPos == 1) {
+                //left
+                if (key == 37) {
+                    this.musicVolume = (byte)(++this.musicVolume%6);
+                } else if (key == 39) { //right
+                    this.musicVolume = (--this.musicVolume<0)?5:this.musicVolume;
+                }
+            } else if (this.currentSelectorPos == 3) {
+                //left
+                if (key == 37) {
+                    this.sfxVolume = (byte)(++this.sfxVolume%6);
+                } else if (key == 39) { //right
+                    this.sfxVolume = (--this.sfxVolume<0)?5:this.sfxVolume;
+                }
+            } else if (this.currentSelectorPos == 4) {
+                //left
+                if (key == 37) {
+                    this.lives = (--this.lives<1)?9:this.lives;
+                } else if (key == 39) { //right
+                    this.lives = (byte)(++this.lives%10);
+                    if (this.lives == 0) ++this.lives;
+                }
             }
         }
     }

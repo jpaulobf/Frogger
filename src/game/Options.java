@@ -258,7 +258,7 @@ public class Options {
      * Return frogger lives
      * @return
      */
-    public byte getLives() {
+    public byte getOptionsDefinedLives() {
         return (this.lives);
     }
 }

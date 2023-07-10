@@ -60,7 +60,7 @@ public class Options {
     private boolean toggleSFX               = true;
     private byte musicVolume                = 5;
     private byte sfxVolume                  = 5;
-    private byte lives                      = 4;
+    private byte lives                      = 5;
 
     //const
     private final Color GREEN_COLOR         = new Color(51, 152, 101, 255);
@@ -249,7 +249,16 @@ public class Options {
                     this.lives = (byte)(++this.lives%10);
                     if (this.lives == 0) ++this.lives;
                 }
+                this.gameRef.updateFroggerLives();
             }
         }
+    }
+
+    /**
+     * Return frogger lives
+     * @return
+     */
+    public byte getLives() {
+        return (this.lives);
     }
 }

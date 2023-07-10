@@ -15,8 +15,8 @@ public class Frog extends SpriteImpl {
     
     //game variable
     private Game gameReference              = null;
-    private final byte INITIAL_LIVES        = 5;
-    private volatile byte lives             = INITIAL_LIVES;
+    private byte INITIAL_LIVES              = 0;
+    private volatile byte lives             = 0;
     private final byte INITIAL_T_POS_X      = 10;
     private final byte INITIAL_T_POS_Y      = 12;
     private volatile boolean isDead         = false;
@@ -69,6 +69,10 @@ public class Frog extends SpriteImpl {
 
         //store the game reference
         this.gameReference      = game;
+
+        //define the initial lives.
+        this.INITIAL_LIVES      = this.gameReference.getLives();
+        this.lives              = this.INITIAL_LIVES;
         
         //retrieve the tile size
         this.scenario           = game.getScenario();
@@ -575,5 +579,14 @@ public class Frog extends SpriteImpl {
      */
     public void tooglePause() {
         this.stopped = !this.stopped;
+    }
+
+    /**
+     * Update frogger lives
+     * @param lives2
+     */
+    public void setLives(byte lives) {
+        this.INITIAL_LIVES = lives;
+        this.lives = lives;
     }
 }

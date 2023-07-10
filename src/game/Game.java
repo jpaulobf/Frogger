@@ -71,6 +71,8 @@ public class Game implements GameInterface {
         // ->>>  create the game elements objects
         //////////////////////////////////////////////////////////////////////
         this.gameState      = new StateMachine(this);
+        this.menu           = new Menu(this, this.wwm, this.whm);
+        this.options        = new Options(this, this.wwm, this.whm);
         this.score          = new Score(this, this.wwm, this.scoreHeight);
         this.scenario       = new Scenario(this, this.wwm, this.whm, this.scoreHeight);
         this.sidewalkSnake  = new SidewalkSnake(this, this.wwm);
@@ -79,8 +81,6 @@ public class Game implements GameInterface {
         this.gameOver       = new GameOver(this, this.wwm, this.completeWhm);
         this.message        = new Message(this, this.wwm, this.completeWhm);
         this.timer          = new Timer(this, this.wwm, this.scoreHeight + this.whm);
-        this.menu           = new Menu(this, this.wwm, this.whm);
-        this.options        = new Options(this, this.wwm, this.whm);
         this.theme          = (Audio)LoadingStuffs.getInstance().getStuff("theme");
         this.gameoverTheme  = (Audio)LoadingStuffs.getInstance().getStuff("gameover-theme");
     }
@@ -505,5 +505,20 @@ public class Game implements GameInterface {
     public void changeGameStateToMenu() {
         this.skipDraw();
         this.gameState.setCurrentState(StateMachine.MENU);
+    }
+
+    /**
+     * Return game lives
+     * @return
+     */
+    public byte getLives() {
+        return (this.options.getOptionsDefinedLives());
+    }
+
+    /**
+     * Update Frogger Lives
+     */
+    public void updateFroggerLives() {
+        this.frog.setLives(this.getLives());
     }
 }

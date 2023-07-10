@@ -511,7 +511,7 @@ public class Game implements GameInterface {
      * Return game lives
      * @return
      */
-    public byte getLives() {
+    public byte getOptionsDefinedLives() {
         return (this.options.getOptionsDefinedLives());
     }
 
@@ -519,6 +519,6 @@ public class Game implements GameInterface {
      * Update Frogger Lives
      */
     public void updateFroggerLives() {
-        this.frog.setLives(this.getLives());
+        this.frog.setLives(this.getOptionsDefinedLives());
     }
 }

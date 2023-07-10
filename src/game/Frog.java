@@ -71,7 +71,7 @@ public class Frog extends SpriteImpl {
         this.gameReference      = game;
 
         //define the initial lives.
-        this.INITIAL_LIVES      = this.gameReference.getLives();
+        this.INITIAL_LIVES      = this.gameReference.getOptionsDefinedLives();
         this.lives              = this.INITIAL_LIVES;
         
         //retrieve the tile size

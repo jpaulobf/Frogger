@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
+
+import util.Audio;
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
@@ -53,9 +55,11 @@ public class Menu {
     //control
     private byte currentSelectorPos     = 0;
     private byte currentStageSelection  = 0;
+    private volatile long framecounter  = 0;
 
     //TODO: Music & SoundFX
-
+    private volatile Audio music        = null;
+    private volatile Audio menuSelect   = null;
     
 
     /**
@@ -70,13 +74,15 @@ public class Menu {
         this.windowWidth    = windowWidth;
 
         //load the images
-        this.selector       = (BufferedImage)LoadingStuffs.getInstance().getStuff("selector");
-        this.logo           = (BufferedImage)LoadingStuffs.getInstance().getStuff("logo");
-        this.labelPlayGame  = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-play-game");
-        this.labelOptions   = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-options");
-        this.labelExit      = (BufferedImage)LoadingStuffs.getInstance().getStuff("label-exit");
-        this.starOff        = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-off");
-        this.starOn         = (BufferedImage)LoadingStuffs.getInstance().getStuff("star-on");
+        this.starOn         = LoadingStuffs.getInstance().getImage("star-on");
+        this.selector       = LoadingStuffs.getInstance().getImage("selector");
+        this.logo           = LoadingStuffs.getInstance().getImage("logo");
+        this.labelPlayGame  = LoadingStuffs.getInstance().getImage("label-play-game");
+        this.labelOptions   = LoadingStuffs.getInstance().getImage("label-options");
+        this.labelExit      = LoadingStuffs.getInstance().getImage("label-exit");
+        this.starOff        = LoadingStuffs.getInstance().getImage("star-off");
+        this.music          = LoadingStuffs.getInstance().getAudio("menu-music");
+        this.menuSelect     = LoadingStuffs.getInstance().getAudio("menu-select");
 
         //create the buffered image
         this.drawInBuffer();
@@ -136,6 +142,12 @@ public class Menu {
      * @param frametime
      */
     public void update(long frametime) {
+
+        this.framecounter += frametime;
+        if (this.framecounter == frametime) {
+            this.music.playContinuously();
+        }
+        
         this.selectorY = BASE_SELECTOR_Y + (this.currentSelectorPos * SELECTOR_DIFF) + ((this.currentSelectorPos == 2)?SELECTOR_DIFF_OFF:0);
     }
 
@@ -146,8 +158,10 @@ public class Menu {
     public void move(int key) {
         if (key == 40) {
             this.currentSelectorPos = (byte)(++this.currentSelectorPos%3);
+            this.menuSelect.play();
         } else if (key == 38) {
             this.currentSelectorPos = (--this.currentSelectorPos<0)?2:this.currentSelectorPos;
+            this.menuSelect.play();
         }
 
         if ((key == 10 || key == 32)) {
@@ -156,6 +170,7 @@ public class Menu {
             } else if (this.currentSelectorPos == 1) {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
+                this.music.stop();
                 this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
             }
         }

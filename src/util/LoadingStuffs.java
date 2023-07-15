@@ -290,6 +290,16 @@ public class LoadingStuffs {
                 stuffs.put("catchAudio", audio);
             }
 
+            audio = new Audio("audio\\menu.wav", 0);
+            if (audio != null && audio.isReady()) {
+                stuffs.put("menu-music", audio);
+            }
+
+            audio = new Audio("audio\\select.wav", 0);
+            if (audio != null && audio.isReady()) {
+                stuffs.put("menu-select", audio);
+            }
+
             Logger.INFO("read all audio...", this);
         } catch (java.lang.Exception e) {
             e.printStackTrace();
@@ -325,6 +335,10 @@ public class LoadingStuffs {
 
     public BufferedImage getImage(String objectName) {
         return (BufferedImage)this.getStuff(objectName);
+    }
+
+    public Audio getAudio(String objectName) {
+        return (Audio)this.getStuff(objectName);
     }
 
     /**

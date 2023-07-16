@@ -295,6 +295,11 @@ public class LoadingStuffs {
                 stuffs.put("menu-music", audio);
             }
 
+            audio = new Audio("audio\\menuitem.wav", 0);
+            if (audio != null && audio.isReady()) {
+                stuffs.put("menu-item", audio);
+            }
+
             audio = new Audio("audio\\select.wav", 0);
             if (audio != null && audio.isReady()) {
                 stuffs.put("menu-select", audio);

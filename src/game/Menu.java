@@ -57,10 +57,10 @@ public class Menu {
     private byte currentStageSelection  = 0;
     private volatile long framecounter  = 0;
 
-    //TODO: Music & SoundFX
+    //Music & SoundFX
     private volatile Audio music        = null;
     private volatile Audio menuSelect   = null;
-    
+    private volatile Audio menuItem     = null;
 
     /**
      * Constructor
@@ -83,6 +83,7 @@ public class Menu {
         this.starOff        = LoadingStuffs.getInstance().getImage("star-off");
         this.music          = LoadingStuffs.getInstance().getAudio("menu-music");
         this.menuSelect     = LoadingStuffs.getInstance().getAudio("menu-select");
+        this.menuItem       = LoadingStuffs.getInstance().getAudio("menu-item");
 
         //create the buffered image
         this.drawInBuffer();
@@ -178,8 +179,10 @@ public class Menu {
         if (this.currentSelectorPos == 0) {
             if (key == 39) {
                 this.currentStageSelection = (byte)(++this.currentStageSelection%10);
+                this.menuItem.play();
             } else if (key == 37) {
                 this.currentStageSelection = (--this.currentStageSelection<0)?9:this.currentStageSelection;
+                this.menuItem.play();
             }
         }
     }

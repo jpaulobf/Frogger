@@ -3,6 +3,8 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
+
+import util.Audio;
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
@@ -67,6 +69,11 @@ public class Options {
     private final short LOGO_X = 800;
     private final short LOGO_Y = 70;
 
+    //music & sfx
+    private volatile Audio menuSelect       = null;
+    private volatile Audio menuItem         = null;
+    private volatile Audio exiting          = null;
+
     /**
      * Constructor
      * @param g2d
@@ -87,6 +94,9 @@ public class Options {
         this.labelExit          = LoadingStuffs.getInstance().getImage("label-exit-options");
         this.toggleOn           = LoadingStuffs.getInstance().getImage("toggle-on");
         this.toggleOff          = LoadingStuffs.getInstance().getImage("toggle-off");
+        this.menuSelect         = LoadingStuffs.getInstance().getAudio("menu-select");
+        this.menuItem           = LoadingStuffs.getInstance().getAudio("menu-item");
+        this.exiting            = LoadingStuffs.getInstance().getAudio("exiting");
 
         //load images from slide off
         for (int i = 0; i < slideOff.length; i++) {
@@ -207,14 +217,18 @@ public class Options {
      */
     public void move(int key) {
         if (key == 27) {
+            this.exiting.play();
             this.currentSelectorPos = 0;
             this.gameRef.changeGameStateToMenu();
         } else {
             if (key == 38) {
                 this.currentSelectorPos = (--this.currentSelectorPos<0)?5:this.currentSelectorPos;
+                this.menuSelect.play();
             } else if (key == 40) {
                 this.currentSelectorPos = (byte)(++this.currentSelectorPos%6);
+                this.menuSelect.play();
             } else if (this.currentSelectorPos == 5 && (key == 10 || key == 32)) {
+                this.exiting.play();
                 this.currentSelectorPos = 0;
                 this.gameRef.changeGameStateToMenu();
             }
@@ -222,10 +236,12 @@ public class Options {
             if (this.currentSelectorPos == 0) {
                 if (key == 39 || key == 37) {
                     this.toggleMusic = !this.toggleMusic;
+                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 2) {
                 if (key == 39 || key == 37) {
                     this.toggleSFX = !this.toggleSFX;
+                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 1) {
                 //left
@@ -245,9 +261,11 @@ public class Options {
                 //left
                 if (key == 37) {
                     this.lives = (--this.lives<1)?9:this.lives;
+                    this.menuItem.play();
                 } else if (key == 39) { //right
                     this.lives = (byte)(++this.lives%10);
                     if (this.lives == 0) ++this.lives;
+                    this.menuItem.play();
                 }
                 this.gameRef.updateFroggerLives();
             }

@@ -61,6 +61,7 @@ public class Menu {
     private volatile Audio music        = null;
     private volatile Audio menuSelect   = null;
     private volatile Audio menuItem     = null;
+    private volatile Audio exiting      = null;
 
     /**
      * Constructor
@@ -84,6 +85,7 @@ public class Menu {
         this.music          = LoadingStuffs.getInstance().getAudio("menu-music");
         this.menuSelect     = LoadingStuffs.getInstance().getAudio("menu-select");
         this.menuItem       = LoadingStuffs.getInstance().getAudio("menu-item");
+        this.exiting        = LoadingStuffs.getInstance().getAudio("exiting");
 
         //create the buffered image
         this.drawInBuffer();
@@ -167,6 +169,7 @@ public class Menu {
 
         if ((key == 10 || key == 32)) {
             if (this.currentSelectorPos == 2) {
+                this.exiting.play();
                 this.gameRef.exitGame();
             } else if (this.currentSelectorPos == 1) {
                 this.gameRef.changeGameStateToOption();

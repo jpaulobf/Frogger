@@ -305,6 +305,11 @@ public class LoadingStuffs {
                 stuffs.put("menu-select", audio);
             }
 
+            audio = new Audio("audio\\exiting.wav", 0);
+            if (audio != null && audio.isReady()) {
+                stuffs.put("exiting", audio);
+            }
+
             Logger.INFO("read all audio...", this);
         } catch (java.lang.Exception e) {
             e.printStackTrace();

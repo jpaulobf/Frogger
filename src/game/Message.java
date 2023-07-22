@@ -51,10 +51,10 @@ public class Message {
         this.wwm            = wwm;
         this.whm            = whm;
         this.gameReference  = game;
-        this.messageTile    = (BufferedImage)LoadingStuffs.getInstance().getStuff("stage-clear");
-        this.stageTile      = (BufferedImage)LoadingStuffs.getInstance().getStuff("stage-1");
-        this.goTile         = (BufferedImage)LoadingStuffs.getInstance().getStuff("go!");
-        this.beepstart      = (Audio)LoadingStuffs.getInstance().getStuff("beepstart");
+        this.messageTile    = LoadingStuffs.getInstance().getImage("stage-clear");
+        this.stageTile      = LoadingStuffs.getInstance().getImage("stage-1");
+        this.goTile         = LoadingStuffs.getInstance().getImage("go!");
+        this.beepstart      = LoadingStuffs.getInstance().getAudio("beepstart");
     }
 
     /**

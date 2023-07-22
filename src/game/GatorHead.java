@@ -25,7 +25,7 @@ public class GatorHead extends SpriteImpl {
      */
     public GatorHead(SpriteCollection spriteCol) {
         this.spriteColRef   = spriteCol;
-        this.gatorSprite    = (BufferedImage)LoadingStuffs.getInstance().getStuff("gator-head");
+        this.gatorSprite    = LoadingStuffs.getInstance().getImage("gator-head");
         this.dockers        = (Dockers)this.spriteColRef;
         this.width          = (short)this.gatorSprite.getWidth();
         this.height         = (byte)this.gatorSprite.getHeight();

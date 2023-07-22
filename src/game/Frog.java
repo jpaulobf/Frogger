@@ -84,8 +84,8 @@ public class Frog extends SpriteImpl {
         this.frogReset();
 
         //load the tiles and sprites
-        this.animalTiles        = (BufferedImage)LoadingStuffs.getInstance().getStuff("animalTiles");
-        this.froggerDeadTiles   = (BufferedImage)LoadingStuffs.getInstance().getStuff("froggerDeadTiles");
+        this.animalTiles        = LoadingStuffs.getInstance().getImage("animalTiles");
+        this.froggerDeadTiles   = LoadingStuffs.getInstance().getImage("froggerDeadTiles");
         
         //filter key
         this.keyMap = new HashMap<Integer, Byte>();
@@ -95,12 +95,12 @@ public class Frog extends SpriteImpl {
         keyMap.put(40, DOWN);
 
         //load jump audio
-        this.jumpAudio      = (Audio)LoadingStuffs.getInstance().getStuff("jumpAudio");
-        this.plunkAudio     = (Audio)LoadingStuffs.getInstance().getStuff("plunkAudio");
-        this.squashAudio    = (Audio)LoadingStuffs.getInstance().getStuff("squashAudio");
-        this.dockerAudio    = (Audio)LoadingStuffs.getInstance().getStuff("docker");
-        this.clearAudio     = (Audio)LoadingStuffs.getInstance().getStuff("clearAudio");
-        this.catchAudio     = (Audio)LoadingStuffs.getInstance().getStuff("catchAudio");
+        this.jumpAudio          = LoadingStuffs.getInstance().getAudio("jumpAudio");
+        this.plunkAudio         = LoadingStuffs.getInstance().getAudio("plunkAudio");
+        this.squashAudio        = LoadingStuffs.getInstance().getAudio("squashAudio");
+        this.dockerAudio        = LoadingStuffs.getInstance().getAudio("docker");
+        this.clearAudio         = LoadingStuffs.getInstance().getAudio("clearAudio");
+        this.catchAudio         = LoadingStuffs.getInstance().getAudio("catchAudio");
     }
 
     /**

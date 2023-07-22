@@ -81,8 +81,8 @@ public class Game implements GameInterface {
         this.gameOver       = new GameOver(this, this.wwm, this.completeWhm);
         this.message        = new Message(this, this.wwm, this.completeWhm);
         this.timer          = new Timer(this, this.wwm, this.scoreHeight + this.whm);
-        this.theme          = (Audio)LoadingStuffs.getInstance().getStuff("theme");
-        this.gameoverTheme  = (Audio)LoadingStuffs.getInstance().getStuff("gameover-theme");
+        this.theme          = LoadingStuffs.getInstance().getAudio("theme");
+        this.gameoverTheme  = LoadingStuffs.getInstance().getAudio("gameover-theme");
     }
     
     /**

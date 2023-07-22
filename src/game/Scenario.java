@@ -95,7 +95,7 @@ public class Scenario {
         final int imagePosX = 1;
         final int imagePosY = 34;
 
-        BufferedImage animals   = (BufferedImage)LoadingStuffs.getInstance().getStuff("animalTiles");
+        BufferedImage animals   = LoadingStuffs.getInstance().getImage("animalTiles");
         this.frogHome           = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(43, 45, Transparency.BITMASK);
         this.frogHome.getGraphics().drawImage(animals, 0, 0, this.frogHome.getWidth(), this.frogHome.getHeight(), 
                                                        imagePosX, imagePosY, imagePosX + this.frogHome.getWidth(), imagePosY + this.frogHome.getHeight(), null);
@@ -119,9 +119,9 @@ public class Scenario {
         if (this.bg2d == null) {
 
             //Get the already loaded image from loader
-            this.sidewalk       = (BufferedImage)LoadingStuffs.getInstance().getStuff("sidewalk");
-            this.grass          = (BufferedImage)LoadingStuffs.getInstance().getStuff("grass");
-            this.subgrass       = (BufferedImage)LoadingStuffs.getInstance().getStuff("subgrass");
+            this.sidewalk       = LoadingStuffs.getInstance().getImage("sidewalk");
+            this.grass          = LoadingStuffs.getInstance().getImage("grass");
+            this.subgrass       = LoadingStuffs.getInstance().getImage("subgrass");
 
             //create a backbuffer image for doublebuffer
             byte lines          = (byte)(this.windowHeight / tileY);

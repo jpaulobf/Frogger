@@ -43,7 +43,7 @@ public class HUD {
         this.lives          = this.gameRef.getFrog().getLives();
         this.hudBG          = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleVolatileImage(wwm, HUDHeight);
         this.bg2d           = (Graphics2D)this.hudBG.getGraphics();
-        this.livesTile      = (BufferedImage)LoadingStuffs.getInstance().getStuff("live");
+        this.livesTile      = LoadingStuffs.getInstance().getImage("live");
     }
 
     /**

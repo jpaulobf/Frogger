@@ -25,7 +25,7 @@ public class Mosquito extends SpriteImpl {
      */
     public Mosquito(SpriteCollection spriteCol) {
         this.spriteColRef   = spriteCol;
-        this.mosquitoSprite = (BufferedImage)LoadingStuffs.getInstance().getStuff("mosquito");
+        this.mosquitoSprite = LoadingStuffs.getInstance().getImage("mosquito");
         this.dockers        = (Dockers)this.spriteColRef;
         this.width          = (short)this.mosquitoSprite.getWidth();
         this.height         = (byte)this.mosquitoSprite.getHeight();

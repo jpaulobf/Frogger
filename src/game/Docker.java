@@ -18,7 +18,7 @@ public class Docker extends SpriteImpl {
      */
     public Docker(SpriteCollection spriteCol) {
         this.spriteColRef   = spriteCol;
-        this.docker         = (BufferedImage)LoadingStuffs.getInstance().getStuff("pixel");
+        this.docker         = LoadingStuffs.getInstance().getImage("pixel");
     }
 
     /**

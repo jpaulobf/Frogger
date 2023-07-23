@@ -45,7 +45,7 @@ public class Turtle extends SpriteImpl {
         this.type           = 0;
 
         //Get the already loaded image from loader
-        this.turtlesTiles   = (BufferedImage)LoadingStuffs.getInstance().getStuff("turtles");
+        this.turtlesTiles   = LoadingStuffs.getInstance().getImage("turtles");
         this.turtlesSmall   = new BufferedImage[6];
         this.turtlesMedium  = new BufferedImage[this.turtlesSmall.length];
 

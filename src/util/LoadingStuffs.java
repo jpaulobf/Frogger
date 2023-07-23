@@ -22,6 +22,8 @@ public class LoadingStuffs {
 
     //Stuffs Map
     private Map<String, Object> stuffs      = new HashMap<String, Object>();
+    private Map<String, BufferedImage> images   = new HashMap<String, BufferedImage>();
+    private Map<String, Audio> audios           = new HashMap<String, Audio>();
 
     /**
      * Constructor... load the game stuffs...
@@ -339,7 +341,7 @@ public class LoadingStuffs {
      * @param objectName
      * @return
      */
-    public Object getStuff(String objectName) {
+    private Object getStuff(String objectName) {
         return (this.stuffs.get(objectName));
     }
 

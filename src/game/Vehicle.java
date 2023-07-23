@@ -27,7 +27,7 @@ public class Vehicle extends SpriteImpl {
         this.spriteColRef  = spriteCol;
 
         //Get the already loaded image from loader
-        this.vehiclesTile   = (BufferedImage)LoadingStuffs.getInstance().getStuff("vehiclesTile");
+        this.vehiclesTile   = LoadingStuffs.getInstance().getImage("vehiclesTile");
     }
     
     /**

@@ -53,8 +53,8 @@ public class Trunk extends SpriteImpl {
         }
         
         //Get the already loaded image from loader
-        this.trunksTiles    = (BufferedImage)LoadingStuffs.getInstance().getStuff("trunksTiles");
-        this.gatorSprite    = (BufferedImage)LoadingStuffs.getInstance().getStuff("gator");
+        this.trunksTiles    = LoadingStuffs.getInstance().getImage("trunksTiles");
+        this.gatorSprite    = LoadingStuffs.getInstance().getImage("gator");
         this.trunkSmall     = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(smallWidth, this.height, Transparency.BITMASK);
         this.trunkMedium    = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(mediumWidth, this.height, Transparency.BITMASK);
         this.trunkLarge     = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().createCompatibleImage(largeWidth, this.height, Transparency.BITMASK);

@@ -30,7 +30,7 @@ public abstract class Snake extends SpriteImpl {
         this.height             = 30;
         this.width              = 81;
         this.gRef               = game;
-        this.snakeTile          = (BufferedImage)LoadingStuffs.getInstance().getStuff("snake-tile");
+        this.snakeTile          = LoadingStuffs.getInstance().getImage("snake-tile");
         this.windowWidth        = windowWidth;
         this.scenarioOffsetY    = this.gRef.getScenarioOffsetY();
     }

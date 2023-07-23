@@ -35,8 +35,8 @@ public class Timer {
         this.wwm            = wwm;
         this.whm            = whm;
         this.gameRef        = game;
-        this.timeTile       = (BufferedImage)LoadingStuffs.getInstance().getStuff("time-tile");
-        this.lasttime       = (Audio)LoadingStuffs.getInstance().getStuff("lasttime");
+        this.timeTile       = LoadingStuffs.getInstance().getImage("time-tile");
+        this.lasttime       = LoadingStuffs.getInstance().getAudio("lasttime");
     }
 
     /**

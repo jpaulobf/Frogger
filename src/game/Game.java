@@ -157,6 +157,7 @@ public class Game implements GameInterface {
                 this.message.update(frametime);
                 
                 if (this.frog.getLives() == 0) { //after possible colision, check lives.
+                    this.skipDraw();
                     this.gameState.setCurrentState(StateMachine.GAME_OVER);
                     this.score.storeNewHighScore();
                     this.score.reset();

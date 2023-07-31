@@ -157,6 +157,7 @@ public class Game implements GameInterface {
                 this.message.update(frametime);
                 
                 if (this.frog.getLives() == 0) { //after possible colision, check lives.
+                    this.skipDraw();
                     this.gameState.setCurrentState(StateMachine.GAME_OVER);
                     this.score.storeNewHighScore();
                     this.score.reset();
@@ -244,13 +245,18 @@ public class Game implements GameInterface {
         }
     }
 
+    private void toogleMuteTheme() {
+        this.toogleMuteTheme(false);
+    }
+
     /**
      * Mute / unmute the game theme
      */
     @Override
-    public void toogleMuteTheme() {
-        if (!this.mute) {
+    public void toogleMuteTheme(boolean isToMute) {
+        if (!this.mute || isToMute) {
             this.theme.pause();
+            this.mute = false;
         } else {
             this.theme.playContinuously();
         }
@@ -352,7 +358,7 @@ public class Game implements GameInterface {
      */
     @Override
     public void tooglePause() {
-        this.toogleMuteTheme();
+        this.toogleMuteTheme(true);
         this.frog.tooglePause();
         this.sidewalkSnake.tooglePause();
         this.scenario.tooglePause();
@@ -375,6 +381,10 @@ public class Game implements GameInterface {
         this.frog.frogReset();
     }
 
+    /**
+     * Call the next stage
+     * @param togglePause
+     */
     public synchronized void nextStage(boolean togglePause) {
         int next = Stages.CURRENT_STAGE[0] + 1;
         this.setCurrentStage(next, togglePause);

@@ -68,7 +68,7 @@ public interface GameInterface {
     /**
      * Mute the music
      */
-    public void toogleMuteTheme();
+    public void toogleMuteTheme(boolean isToMute);
 
     /**
      * Decrease the Master Volume

@@ -61,7 +61,9 @@ public class Options {
     private boolean toggleMusic             = true;
     private boolean toggleSFX               = true;
     private byte musicVolume                = 5;
+    private byte oldMusicVolume             = 5;
     private byte sfxVolume                  = 5;
+    private byte oldSfxVolume               = 5;
     private byte lives                      = 5;
 
     //const
@@ -222,10 +224,22 @@ public class Options {
             this.gameRef.changeGameStateToMenu();
         } else {
             if (key == 38) {
-                this.currentSelectorPos = (--this.currentSelectorPos<0)?5:this.currentSelectorPos;
+                if (this.musicVolume == -1 && this.currentSelectorPos == 2) {
+                    this.currentSelectorPos = 0;
+                } else if (this.sfxVolume == -1 && this.currentSelectorPos == 4) {
+                    this.currentSelectorPos = 2;
+                } else {
+                    this.currentSelectorPos = (--this.currentSelectorPos<0)?5:this.currentSelectorPos;
+                }
                 this.menuSelect.play();
             } else if (key == 40) {
-                this.currentSelectorPos = (byte)(++this.currentSelectorPos%6);
+                if (this.musicVolume == -1 && this.currentSelectorPos == 0) {
+                    this.currentSelectorPos = 2;
+                } else if (this.sfxVolume == -1 && this.currentSelectorPos == 2) {
+                    this.currentSelectorPos = 4;
+                } else {
+                    this.currentSelectorPos = (byte)(++this.currentSelectorPos%6);
+                }
                 this.menuSelect.play();
             } else if (this.currentSelectorPos == 5 && (key == 10 || key == 32)) {
                 this.exiting.play();
@@ -236,11 +250,23 @@ public class Options {
             if (this.currentSelectorPos == 0) {
                 if (key == 39 || key == 37) {
                     this.toggleMusic = !this.toggleMusic;
+                    if (!this.toggleMusic) {
+                        this.oldMusicVolume = this.musicVolume;
+                        this.musicVolume = -1;
+                    } else {
+                        this.musicVolume = this.oldMusicVolume;
+                    }
                     this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 2) {
                 if (key == 39 || key == 37) {
                     this.toggleSFX = !this.toggleSFX;
+                    if (!this.toggleSFX) {
+                        this.oldSfxVolume = this.sfxVolume;
+                        this.sfxVolume = -1;
+                    } else {
+                        this.sfxVolume = this.oldSfxVolume;
+                    }
                     this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 1) {

@@ -81,26 +81,6 @@ public interface GameInterface {
     public void incMasterVolume();
 
     /**
-     * Decrease only the theme
-     */
-    public void decVolumeTheme();
-
-    /**
-     * Increase the theme volume
-     */    
-    public void incVolumeTheme();
-
-    /**
-     * Decrease the SFX Volume
-     */
-    public void decVolumeSFX();
-
-    /**
-     * Increase the SFX Volume
-     */
-    public void incVolumeSFX();
-
-    /**
      * Stop the music
      */
     public void stopTheme();

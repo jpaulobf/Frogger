@@ -16,6 +16,7 @@ public class Audio {
     private AudioInputStream audioInputStream   = null;
     private boolean ready                       = false;
     private long microsecondPosition            = 0;
+    private float oldValue                      = 80f; 
   
     /**
      * Audio class
@@ -99,5 +100,16 @@ public class Audio {
 
     public byte getStatus() {
         return (this.status);
+    }
+
+    public void muteVolume() {
+        FloatControl control = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+        this.oldValue = control.getValue();
+        control.setValue(-80);
+    }
+
+    public void unmuteVolume() {
+        FloatControl control = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+        control.setValue(this.oldValue);
     }
 }

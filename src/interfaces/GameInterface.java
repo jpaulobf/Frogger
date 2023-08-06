@@ -106,4 +106,25 @@ public interface GameInterface {
      * @param keyCode
      */
     public void keyReleased(int keyCode);
+
+
+    /**
+     * Mute game music
+     */
+    public void muteMusic();
+
+    /**
+     * Unmute game music
+     */
+    public void unmuteMusic();
+
+    /**
+     * Mute SFX
+     */
+    public void muteSFXs();
+
+    /**
+     * Unmute SFX
+     */
+    public void unmuteSFXs();
 }

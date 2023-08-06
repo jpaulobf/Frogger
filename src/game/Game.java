@@ -264,6 +264,42 @@ public class Game implements GameInterface {
     }
 
     /**
+     * Mute game music
+     */
+    public void muteMusic() {
+        LoadingStuffs.getInstance().getMusicList().stream().forEach(item -> {
+            item.muteVolume();
+        });
+    }
+
+    /**
+     * Unmute game music
+     */
+    public void unmuteMusic() {
+        LoadingStuffs.getInstance().getMusicList().stream().forEach(item -> {
+            item.unmuteVolume();
+        });
+    }
+
+    /**
+     * Mute SFX
+     */
+    public void muteSFXs() {
+        LoadingStuffs.getInstance().getSFXList().stream().forEach(item -> {
+            item.muteVolume();
+        });
+    }
+
+    /**
+     * Unmute SFX
+     */
+    public void unmuteSFXs() {
+        LoadingStuffs.getInstance().getSFXList().stream().forEach(item -> {
+            item.unmuteVolume();
+        });
+    }
+
+    /**
      * Decrease the Master Volume
      */
     @Override
@@ -398,8 +434,8 @@ public class Game implements GameInterface {
             this.canContinue = false;
             if (!this.reseting) {
                 this.movement(keyCode);
-                if (keyCode == 45) {this.decMasterVolume();}
-                if (keyCode == 61) {this.incMasterVolume();}
+                if (keyCode == 45) {this.muteMusic();}
+                if (keyCode == 61) {this.unmuteMusic();}
             }
         }
     }

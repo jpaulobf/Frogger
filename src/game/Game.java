@@ -264,6 +264,26 @@ public class Game implements GameInterface {
     }
 
     /**
+     * Set Music Volume
+     * @param volume
+     */
+    public void setMusicVolume(byte volume) {
+        LoadingStuffs.getInstance().getMusicList().stream().forEach(item -> {
+            item.setVolume(volume);
+        });
+    }
+
+    /**
+     * Set SFX Volume
+     * @param volume
+     */
+    public void setSFXVolume(byte volume) {
+        LoadingStuffs.getInstance().getSFXList().stream().forEach(item -> {
+            item.setVolume(volume);
+        });
+    }
+
+    /**
      * Mute game music
      */
     public void muteMusic() {

@@ -127,4 +127,16 @@ public interface GameInterface {
      * Unmute SFX
      */
     public void unmuteSFXs();
+
+    /**
+     * Set Music Volume
+     * @param volume
+     */
+    public void setMusicVolume(byte volume);
+
+    /**
+     * Set SFX Volume
+     * @param volume
+     */
+    public void setSFXVolume(byte volume);
 }

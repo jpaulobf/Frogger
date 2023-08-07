@@ -3,7 +3,6 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
-
 import util.Audio;
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
@@ -35,7 +34,6 @@ public class Options {
     private BufferedImage [] live           = new BufferedImage[9];
     private BufferedImage toggleOn          = null;
     private BufferedImage toggleOff         = null;
-
     private BufferedImage toggleMusicBt     = null;
     private BufferedImage toggleSFXBt       = null;
 
@@ -124,7 +122,7 @@ public class Options {
      */
     private void drawBuffer() {
         if (this.bgd2 == null) {
-            
+            //recovery options logo
             this.optionsLogo = LoadingStuffs.getInstance().getImage("options-logo");
 
             //create a backbuffer image for doublebuffer
@@ -253,35 +251,49 @@ public class Options {
                     if (!this.toggleMusic) {
                         this.oldMusicVolume = this.musicVolume;
                         this.musicVolume = -1;
+                        this.menuItem.play();
+                        this.gameRef.muteMusic();
                     } else {
                         this.musicVolume = this.oldMusicVolume;
+                        this.menuItem.play();
+                        this.gameRef.unmuteMusic();
                     }
-                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 2) {
                 if (key == 39 || key == 37) {
                     this.toggleSFX = !this.toggleSFX;
                     if (!this.toggleSFX) {
                         this.oldSfxVolume = this.sfxVolume;
+                        this.menuItem.play();
+                        this.gameRef.muteSFXs();
                         this.sfxVolume = -1;
                     } else {
                         this.sfxVolume = this.oldSfxVolume;
+                        this.gameRef.unmuteSFXs();
+                        this.menuItem.play();
                     }
-                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 1) {
                 //left
                 if (key == 37) {
                     this.musicVolume = (byte)(++this.musicVolume%6);
+                    this.gameRef.setMusicVolume(this.musicVolume);
+                    this.menuItem.play();
                 } else if (key == 39) { //right
                     this.musicVolume = (--this.musicVolume<0)?5:this.musicVolume;
+                    this.gameRef.setMusicVolume(this.musicVolume);
+                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 3) {
                 //left
                 if (key == 37) {
                     this.sfxVolume = (byte)(++this.sfxVolume%6);
+                    this.gameRef.setSFXVolume(this.sfxVolume);
+                    this.menuItem.play();
                 } else if (key == 39) { //right
                     this.sfxVolume = (--this.sfxVolume<0)?5:this.sfxVolume;
+                    this.gameRef.setSFXVolume(this.sfxVolume);
+                    this.menuItem.play();
                 }
             } else if (this.currentSelectorPos == 4) {
                 //left

@@ -112,4 +112,28 @@ public class Audio {
         FloatControl control = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
         control.setValue(this.oldValue);
     }
+
+    public void setVolume(byte volume) {
+        FloatControl control = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+        switch (volume) {
+            case 5:
+                control.setValue(0);
+                break;
+            case 4:
+                control.setValue(-5);
+                break;
+            case 3:
+                control.setValue(-10);
+                break;
+            case 2:
+                control.setValue(-15);
+                break;
+            case 1:
+                control.setValue(-20);
+                break;
+            case 0:
+                control.setValue(-25);
+                break;
+        }
+    }
 }

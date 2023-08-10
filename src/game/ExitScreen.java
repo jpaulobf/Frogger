@@ -89,10 +89,10 @@ public class ExitScreen {
       
         //main box shadow
         this.g2d.setColor(Color.BLACK);
-        this.g2d.fillRect((int)mainBox.x + 1, (int)mainBox.y + 1, (int)mainBox.width, (int)mainBox.height);
+        //this.g2d.fillRect((int)mainBox.x + 1, (int)mainBox.y + 1, (int)mainBox.width, (int)mainBox.height);
         
         //draw the main box 
-        this.g2d.setColor(new Color(0,66,147));
+        this.g2d.setColor(new Color(0, 0, 0, 200));
         this.g2d.fillRect((int)mainBox.x, (int)mainBox.y, (int)mainBox.width, (int)mainBox.height);
 
         //yes button shadow
@@ -207,15 +207,15 @@ public class ExitScreen {
         } else if (keyCode == 27) { //ESC = no
             this.resetExitScreen();
             this.closing.play();
-            //this.game.changeGameState(StateMachine.IN_GAME);
+            this.game.changeGameState(StateMachine.IN_GAME);
         } else if (keyCode == 10) { //Enter
             if (this.currentButtonSelected == 0) {
-                //this.game.gameTerminate();
-                //this.game.toMainMenu();
+                this.game.gameTerminate();
+                this.game.toMainMenu();
             } else {
                 this.resetExitScreen();
                 this.closing.play();
-                //this.game.changeGameState(StateMachine.IN_GAME);
+                this.game.changeGameState(StateMachine.IN_GAME);
             }
         }
     }

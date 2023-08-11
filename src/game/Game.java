@@ -246,6 +246,8 @@ public class Game implements GameInterface {
             this.menu.move(keyDirection);
         } else if (this.gameState.getCurrentState() == StateMachine.OPTIONS) {
             this.options.move(keyDirection);
+        } else if (this.gameState.getCurrentState() == StateMachine.EXITING) {
+            this.exitScreen.move(keyDirection);
         }
     }
 
@@ -462,6 +464,15 @@ public class Game implements GameInterface {
                 if (keyCode == 61) {this.unmuteMusic();}
             }
         }
+
+        if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
+            //when ESC is pressed
+            if (keyCode == 27) {
+                this.gameState.setCurrentState(StateMachine.EXITING);
+                this.skipDraw();
+                this.framecounter = 0;
+            }
+        }
     }
 
     /**
@@ -554,5 +565,24 @@ public class Game implements GameInterface {
      */
     public void updateFroggerLives() {
         this.frog.setLives(this.getOptionsDefinedLives());
+    }
+
+    @Override
+    public void changeGameState(int state) {
+        this.skipDraw();
+        this.gameState.currentState = state;
+    }
+
+    @Override
+    public void gameTerminate() {
+        // this.score.reset();
+        this.theme.stop();
+        this.framecounter   = 0;
+        this.skipDraw       = true;
+    }
+
+    @Override
+    public void toMainMenu() {
+        this.changeGameState(StateMachine.MENU);
     }
 }

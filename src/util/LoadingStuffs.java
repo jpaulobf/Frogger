@@ -241,6 +241,15 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\live_9.png"));
             images.put("live-9", image);
 
+            image = ImageIO.read(new File("images\\really.png"));
+            images.put("really", image);
+
+            image = ImageIO.read(new File("images\\yes.png"));
+            images.put("lb-yes", image);
+
+            image = ImageIO.read(new File("images\\no.png"));
+            images.put("lb-no", image);
+
             Logger.INFO("read all images...", this);
 
             Audio audio = new Audio("audio\\jump.wav", 0);
@@ -311,6 +320,16 @@ public class LoadingStuffs {
             audio = new Audio("audio\\exiting.wav", 0);
             if (audio != null && audio.isReady()) {
                 sfxs.put("exiting", audio);
+            }
+
+            audio = new Audio("audio\\opening.wav", 0);
+            if (audio != null && audio.isReady()) {
+                sfxs.put("opening", audio);
+            }
+
+            audio = new Audio("audio\\closing.wav", 0);
+            if (audio != null && audio.isReady()) {
+                sfxs.put("closing", audio);
             }
 
             Logger.INFO("read all audio...", this);

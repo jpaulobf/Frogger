@@ -139,4 +139,10 @@ public interface GameInterface {
      * @param volume
      */
     public void setSFXVolume(byte volume);
+
+    public void changeGameState(int inGame);
+
+    public void gameTerminate();
+
+    public void toMainMenu();
 }

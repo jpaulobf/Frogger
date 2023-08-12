@@ -145,4 +145,6 @@ public interface GameInterface {
     public void gameTerminate();
 
     public void toMainMenu();
+
+    public void backToGame(boolean ignoreNextEsc);
 }

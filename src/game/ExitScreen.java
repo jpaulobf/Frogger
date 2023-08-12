@@ -207,7 +207,7 @@ public class ExitScreen {
         } else if (keyCode == 27) { //ESC = no
             this.resetExitScreen();
             this.closing.play();
-            this.game.changeGameState(StateMachine.IN_GAME);
+            this.game.backToGame(true);
         } else if (keyCode == 10) { //Enter
             if (this.currentButtonSelected == 0) {
                 this.game.gameTerminate();
@@ -215,7 +215,7 @@ public class ExitScreen {
             } else {
                 this.resetExitScreen();
                 this.closing.play();
-                this.game.changeGameState(StateMachine.IN_GAME);
+                this.game.backToGame(false);
             }
         }
     }

@@ -56,6 +56,7 @@ public class Game implements GameInterface {
     private GraphicsEnvironment ge          = null;
     private GraphicsDevice dsd              = null;
     private Graphics2D g2dFS                = null;
+    private boolean ignoreNextEsc           = false;
 
     /**
      * Game constructor
@@ -463,16 +464,17 @@ public class Game implements GameInterface {
                 if (keyCode == 45) {this.muteMusic();}
                 if (keyCode == 61) {this.unmuteMusic();}
             }
-        }
 
-        if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
-            //when ESC is pressed
-            if (keyCode == 27) {
-                this.gameState.setCurrentState(StateMachine.EXITING);
-                this.skipDraw();
-                this.framecounter = 0;
+            if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
+                //when ESC is pressed
+                if (keyCode == 27 && !this.ignoreNextEsc) {
+                    this.gameState.setCurrentState(StateMachine.EXITING);
+                    this.skipDraw();
+                    this.framecounter = 0;
+                }
+                this.ignoreNextEsc = false;
             }
-        }
+        }       
     }
 
     /**
@@ -584,5 +586,12 @@ public class Game implements GameInterface {
     @Override
     public void toMainMenu() {
         this.changeGameState(StateMachine.MENU);
+    }
+
+    @Override
+    public void backToGame(boolean ignoreNextEsc) {
+        this.skipDraw();
+        this.changeGameState(StateMachine.IN_GAME);
+        this.ignoreNextEsc = ignoreNextEsc;
     }
 }

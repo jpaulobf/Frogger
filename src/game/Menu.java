@@ -155,6 +155,13 @@ public class Menu {
     }
 
     /**
+     * Reset the framecounter
+     */
+    public void reset() {
+        this.framecounter = 0;
+    }
+
+    /**
      * Foward the keys
      * @param frametime
      */

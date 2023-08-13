@@ -109,22 +109,21 @@ public class Game implements GameInterface {
             //////////////////////////////////////////////////////////////////////
             if (this.gameState.getCurrentState() == StateMachine.STAGING) {
                 this.framecounter += frametime;
-                
+
                 if (this.framecounter == frametime) { //update just one time
                     this.scenario.update(frametime);
                     this.message.update(frametime);
                     this.hud.update(frametime);
                     this.timer.update(frametime);
+                    this.theme.stop();
                 } else {
                     this.message.update(frametime);
                     if (!this.message.finished()) {
                         this.message.showStageAnnouncement();
                     } else {
-                        this.framecounter = 0;
                         this.message.showing(false);
                         this.message.toogleStageAnnouncement();
-                        this.skipDraw();
-                        this.gameState.setCurrentState(StateMachine.IN_GAME);
+                        this.changeGameState(StateMachine.IN_GAME);
                     }
                 }
             } else if (this.gameState.getCurrentState() == StateMachine.MENU) {
@@ -150,20 +149,18 @@ public class Game implements GameInterface {
                 this.message.update(frametime);
                 
                 if (this.frog.getLives() == 0) { //after possible colision, check lives.
-                    this.skipDraw();
-                    this.gameState.setCurrentState(StateMachine.GAME_OVER);
+                    this.changeGameState(StateMachine.GAME_OVER);
                     this.score.storeNewHighScore();
                     this.score.reset();
-                    this.framecounter = 0;
                 }
             } else if (this.gameState.getCurrentState() == StateMachine.GAME_OVER) {
                 this.framecounter += frametime;
                 if (this.framecounter >= 7_000_000_000L) {
-                    this.framecounter = 0;
                     this.frog.resetLives();
-                    this.softReset();
-                    this.theme.playContinuously();
-                    this.gameState.setCurrentState(StateMachine.IN_GAME);
+                    //this.softReset();
+                    //this.theme.playContinuously();
+                    this.gameTerminate();
+                    this.changeGameState(StateMachine.MENU);
                 } else if (this.framecounter == frametime) { //run just once
                     this.theme.stop();
                     this.gameoverTheme.play();
@@ -404,6 +401,7 @@ public class Game implements GameInterface {
         this.scenario.getTurtles().reset();
         this.scenario.getDockers().reset();
         this.sidewalkSnake.reset();
+        this.menu.reset();
         this.timer.reset();
         this.frog.frogReset();
     }
@@ -468,9 +466,7 @@ public class Game implements GameInterface {
             if (this.gameState.getCurrentState() == StateMachine.IN_GAME) {
                 //when ESC is pressed
                 if (keyCode == 27 && !this.ignoreNextEsc) {
-                    this.gameState.setCurrentState(StateMachine.EXITING);
-                    this.skipDraw();
-                    this.framecounter = 0;
+                    this.changeGameState(StateMachine.EXITING);
                 }
                 this.ignoreNextEsc = false;
             }
@@ -533,8 +529,7 @@ public class Game implements GameInterface {
      * set game state to options
      */
     public void changeGameStateToOption() {
-        this.skipDraw();
-        this.gameState.setCurrentState(StateMachine.OPTIONS);
+        this.changeGameState(StateMachine.OPTIONS);
     }
 
     /**
@@ -543,15 +538,14 @@ public class Game implements GameInterface {
     public void changeGameStateToInGame(int currentStage) {
         this.skipDraw();
         this.setCurrentStage(currentStage, false);
-        this.gameState.setCurrentState(StateMachine.STAGING);
+        this.changeGameState(StateMachine.STAGING);
     }
 
     /**
      * set game state to menu
      */
     public void changeGameStateToMenu() {
-        this.skipDraw();
-        this.gameState.setCurrentState(StateMachine.MENU);
+        this.changeGameState(StateMachine.MENU);
     }
 
     /**
@@ -572,13 +566,22 @@ public class Game implements GameInterface {
     @Override
     public void changeGameState(int state) {
         this.skipDraw();
-        this.gameState.currentState = state;
+        this.framecounter = 0;
+        this.gameState.setCurrentState(state);
     }
 
     @Override
     public void gameTerminate() {
-        // this.score.reset();
+        //stop main theme
         this.theme.stop();
+        
+        //reset game values
+        this.toogleReseting();
+        this.score.reset();
+        this.softReset();
+        this.toogleReseting();
+
+        //control
         this.framecounter   = 0;
         this.skipDraw       = true;
     }

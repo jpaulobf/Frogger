@@ -15,6 +15,7 @@ import interfaces.CanvasEngine;
 import interfaces.ControllerListener;
 import interfaces.GameInterface;
 import util.JoystickController;
+import util.LoadingStuffs;
 
 /*
     Project:    Frogger Game
@@ -166,7 +167,9 @@ public class Frogger implements Runnable {
                     // if (e.getKeyCode() == 27) {setVisible(false); System.exit(0);}
                     game.keyReleased(e.getKeyCode());
                 }
-            });     
+            });
+
+            this.setIconImage(LoadingStuffs.getInstance().getImage("logo"));
 
             //show the game screen
             this.setVisible(true);

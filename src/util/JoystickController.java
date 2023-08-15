@@ -29,7 +29,7 @@ public class JoystickController implements Runnable {
      * @param listener
      */
     public JoystickController(ControllerListener listener) {
-        /* Get the available controllers */
+        /* Get the available controllers 
         ControllerEnvironment ce = ControllerEnvironment.getDefaultEnvironment();
 		Controller[] controllers = ce.getControllers();    
         this.listener = listener;
@@ -39,7 +39,7 @@ public class JoystickController implements Runnable {
                 this.controller = temp;
                 break;
             }
-        }
+        }*/
     }
 
     /**

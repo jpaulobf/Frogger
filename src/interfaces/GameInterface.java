@@ -140,11 +140,25 @@ public interface GameInterface {
      */
     public void setSFXVolume(byte volume);
 
+    /**
+     * Change the game state
+     * @param inGame
+     */
     public void changeGameState(int inGame);
 
+    /**
+     * Terminate the game
+     */
     public void gameTerminate();
 
+    /**
+     * Set the game back to main menu
+     */    
     public void toMainMenu();
 
+    /**
+     * Cancel exiting and back to running game
+     * @param ignoreNextEsc
+     */
     public void backToGame(boolean ignoreNextEsc);
 }

@@ -565,8 +565,15 @@ public class Game implements GameInterface {
 
     @Override
     public void changeGameState(int state) {
+        this.changeGameState(state, true);
+    }
+
+    @Override
+    public void changeGameState(int state, boolean resetFrameCounter) {
         this.skipDraw();
-        this.framecounter = 0;
+        if (resetFrameCounter) {
+            this.framecounter = 0;
+        }
         this.gameState.setCurrentState(state);
     }
 
@@ -594,7 +601,7 @@ public class Game implements GameInterface {
     @Override
     public void backToGame(boolean ignoreNextEsc) {
         this.skipDraw();
-        this.changeGameState(StateMachine.IN_GAME);
+        this.changeGameState(StateMachine.IN_GAME, false);
         this.ignoreNextEsc = ignoreNextEsc;
     }
 }

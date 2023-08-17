@@ -147,6 +147,12 @@ public interface GameInterface {
     public void changeGameState(int inGame);
 
     /**
+     * Change the game state
+     * @param inGame
+     */
+    public void changeGameState(int state, boolean resetFrameCounter);
+
+    /**
      * Terminate the game
      */
     public void gameTerminate();

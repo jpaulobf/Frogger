@@ -6,7 +6,6 @@ import java.awt.BasicStroke;
 import java.awt.image.VolatileImage;
 import interfaces.GameInterface;
 import util.LoadingStuffs;
-
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 import java.awt.Transparency;
@@ -62,7 +61,7 @@ public class Scenario {
         this.vehicles.nextStage();
         this.trunks.nextStage();
         this.turtles.nextStage();
-        this.dockers.nextStage();
+        //this.dockers.nextStage();
 
         //enable elements update
         this.toogleReseting();

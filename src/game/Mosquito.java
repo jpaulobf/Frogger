@@ -55,7 +55,7 @@ public class Mosquito extends SpriteImpl {
                     if (++counter > MAX_TRIES) {
                         break;
                     }
-                } while (isInWhichDock[sorted] != false || this.sorted == this.dockers.getCurrentGatorHead());
+                } while (isInWhichDock[sorted] || this.sorted == this.dockers.getCurrentGatorHead());
 
                 if (sorted != -1) {
                     //after sort, set the mosquito

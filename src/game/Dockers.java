@@ -20,6 +20,7 @@ public class Dockers extends SpriteCollection {
     private volatile boolean stopped        = false;
     public volatile byte currentMosquito    = -1;
     public volatile byte currentGatorHead   = -1;
+    private volatile boolean notReset       = false;
 
     /**
      * Dockers constructor
@@ -45,6 +46,7 @@ public class Dockers extends SpriteCollection {
         isInDock[1] = true;
         isInDock[2] = true;
         isInDock[4] = true;
+        this.notReset = true;
     }
     
     @Override
@@ -152,7 +154,7 @@ public class Dockers extends SpriteCollection {
      */
     public void reset() {
         //initialize the dockers
-        for (int i = 0; i < this.isInDock.length; i++) {
+        for (int i = 0; i < this.isInDock.length && !this.notReset; i++) {
             isInDock[i] = false;
         }
 

@@ -96,7 +96,7 @@ public class Dockers extends SpriteCollection {
      * Return the number of free dockers
      * @return
      */
-    public byte getFreeDockersCounter() {
+    public synchronized byte getFreeDockersCounter() {
         byte free = 0;
         for (int i = 0; i < this.isInDock.length; i++) {
             free += (this.isInDock[i]?0:1);
@@ -108,7 +108,7 @@ public class Dockers extends SpriteCollection {
      * Verify if all dockers are filled
      * @return
      */
-    public boolean getDockersComplete() {
+    public synchronized boolean getDockersComplete() {
         boolean complete = true;
         for (int cnt = 0; cnt < this.isInDock.length; cnt++) {
             complete &= this.isInDock[cnt];

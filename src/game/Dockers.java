@@ -11,7 +11,7 @@ import game.interfaces.Stages;
 public class Dockers extends SpriteCollection {
 
     private Docker[] dockers                = null;
-    private boolean [] isInDock             = null;
+    private volatile boolean [] isInDock    = null;
     private Scenario scenarioRef            = null;
     private Mosquito mosquito               = null;
     private GatorHead gatorHead             = null;
@@ -43,7 +43,6 @@ public class Dockers extends SpriteCollection {
     @SuppressWarnings("unused")
     private void dummy() {
         isInDock[0] = true;
-        isInDock[1] = true;
         isInDock[2] = true;
         isInDock[4] = true;
         this.notReset = true;
@@ -96,7 +95,7 @@ public class Dockers extends SpriteCollection {
      * Return the number of free dockers
      * @return
      */
-    public synchronized byte getFreeDockersCounter() {
+    public byte getFreeDockersCounter() {
         byte free = 0;
         for (int i = 0; i < this.isInDock.length; i++) {
             free += (this.isInDock[i]?0:1);
@@ -108,7 +107,7 @@ public class Dockers extends SpriteCollection {
      * Verify if all dockers are filled
      * @return
      */
-    public synchronized boolean getDockersComplete() {
+    public boolean getDockersComplete() {
         boolean complete = true;
         for (int cnt = 0; cnt < this.isInDock.length; cnt++) {
             complete &= this.isInDock[cnt];

@@ -565,11 +565,17 @@ public class Game implements GameInterface {
         this.frog.setLives(this.getOptionsDefinedLives());
     }
 
+    /**
+     * Change de game state
+     */
     @Override
     public void changeGameState(int state) {
         this.changeGameState(state, true);
     }
 
+    /**
+     * Polymorphic change game state
+     */
     @Override
     public void changeGameState(int state, boolean resetFrameCounter) {
         this.skipDraw();

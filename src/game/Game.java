@@ -585,6 +585,10 @@ public class Game implements GameInterface {
         this.gameState.setCurrentState(state);
     }
 
+    /**
+     * Terminate the in-game game. 
+     * Reset all data and stop the main theme.
+     */
     @Override
     public void gameTerminate() {
         //stop main theme
@@ -601,11 +605,17 @@ public class Game implements GameInterface {
         this.skipDraw       = true;
     }
 
+    /**
+     * Change the game state to "Menu"
+     */
     @Override
     public void toMainMenu() {
         this.changeGameState(StateMachine.MENU);
     }
 
+    /**
+     * On exiting screen, cancel the exiting and back to the game.
+     */
     @Override
     public void backToGame(boolean ignoreNextEsc) {
         this.skipDraw();

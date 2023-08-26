@@ -61,7 +61,6 @@ public class Scenario {
         this.vehicles.nextStage();
         this.trunks.nextStage();
         this.turtles.nextStage();
-        //this.dockers.nextStage();
 
         //enable elements update
         this.toogleReseting();

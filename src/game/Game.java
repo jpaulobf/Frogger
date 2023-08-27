@@ -613,6 +613,13 @@ public class Game implements GameInterface {
     }
 
     /**
+     * Set the game to ending state
+     */
+    public void endGame() {
+        this.changeGameState(StateMachine.ENDING);
+    }
+
+    /**
      * On exiting screen, cancel the exiting and back to the game.
      */
     @Override

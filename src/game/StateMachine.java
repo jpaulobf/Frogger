@@ -16,6 +16,7 @@ public class StateMachine {
     public final static int CONTINUE    = 8;
     public final static int GAME_OVER   = 9;
     public final static int EXITING     = 10;
+    public final static int ENDING      = 11;
     protected int currentState          = STARTING;
     protected Game referencetToGame     = null;
 

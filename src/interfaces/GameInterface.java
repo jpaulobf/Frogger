@@ -163,6 +163,11 @@ public interface GameInterface {
     public void toMainMenu();
 
     /**
+     * Set the game to ending state
+     */
+    public void endGame();
+
+    /**
      * Cancel exiting and back to running game
      * @param ignoreNextEsc
      */

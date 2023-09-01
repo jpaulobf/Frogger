@@ -40,6 +40,7 @@ public class Game implements GameInterface {
     private ExitScreen exitScreen           = null;
     private volatile Audio theme            = null;
     private volatile Audio gameoverTheme    = null;
+    private volatile Audio endingTheme      = null;
     private volatile long framecounter      = 0;
     private volatile boolean mute           = false;
     private volatile boolean canContinue    = true;
@@ -87,6 +88,7 @@ public class Game implements GameInterface {
         //load general objects
         this.theme          = LoadingStuffs.getInstance().getAudio("theme");
         this.gameoverTheme  = LoadingStuffs.getInstance().getAudio("gameover-theme");
+        this.endingTheme    = LoadingStuffs.getInstance().getAudio("ending-theme");
     }
     
     /**
@@ -174,6 +176,16 @@ public class Game implements GameInterface {
                 }
                 
                 this.exitScreen.update(frametime);
+            } else if (this.gameState.getCurrentState() == StateMachine.ENDING) {
+                this.framecounter += frametime;
+                if (this.framecounter >= 10_000_000_000L) {
+                    this.frog.resetLives();
+                    this.gameTerminate();
+                    this.changeGameState(StateMachine.MENU);
+                } else if (this.framecounter == frametime) { //run just once
+                    this.theme.stop();
+                    this.endingTheme.play();
+                }
             }
 
             //Prevent overflow
@@ -624,8 +636,12 @@ public class Game implements GameInterface {
      */
     @Override
     public void backToGame(boolean ignoreNextEsc) {
-        this.skipDraw();
         this.changeGameState(StateMachine.IN_GAME, false);
         this.ignoreNextEsc = ignoreNextEsc;
+    }
+
+
+    public void changeGameStateToEnding() {
+        this.changeGameState(StateMachine.ENDING);
     }
 }

@@ -172,4 +172,24 @@ public interface GameInterface {
      * @param ignoreNextEsc
      */
     public void backToGame(boolean ignoreNextEsc);
+
+    /**
+     * Exit the game
+     */
+    public void exitGame();
+
+    /**
+     * Change the gamestate to options menu
+     */
+    public void changeGameStateToOption();
+
+    /**
+     * Change the gamestate to ending
+     */
+    public void changeGameStateToEnding();
+
+    /**
+     * Change the gamestate to ingame
+     */
+    public void changeGameStateToInGame(int i);
 }

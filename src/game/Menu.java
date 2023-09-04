@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
 
+import interfaces.GameInterface;
 import util.Audio;
 import util.LoadingStuffs;
 import java.awt.image.BufferedImage;
@@ -12,7 +13,7 @@ import java.awt.GraphicsEnvironment;
 public class Menu {
 
     //Scenario variables
-    private Game gameRef                = null;
+    private GameInterface gameRef       = null;
     private Graphics2D bgd2             = null;
     private int windowWidth             = 0;
     private int windowHeight            = 0;

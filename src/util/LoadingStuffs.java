@@ -287,6 +287,11 @@ public class LoadingStuffs {
                 musics.put("gameover-theme", audio);
             }
 
+            audio = new Audio("audio\\ending.wav", 0);
+            if (audio != null && audio.isReady()) {
+                musics.put("ending-theme", audio);
+            }
+
             audio = new Audio("audio\\lasttime.wav", 0);
             if (audio != null && audio.isReady()) {
                 sfxs.put("lasttime", audio);

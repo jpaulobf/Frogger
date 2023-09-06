@@ -640,7 +640,9 @@ public class Game implements GameInterface {
         this.ignoreNextEsc = ignoreNextEsc;
     }
 
-
+    /**
+     * Changing the game state to ending
+     */
     public void changeGameStateToEnding() {
         this.changeGameState(StateMachine.ENDING);
     }

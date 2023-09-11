@@ -250,6 +250,9 @@ public class LoadingStuffs {
             image = ImageIO.read(new File("images\\no.png"));
             images.put("lb-no", image);
 
+            image = ImageIO.read(new File("images\\ending.png"));
+            images.put("ending", image);
+
             Logger.INFO("read all images...", this);
 
             Audio audio = new Audio("audio\\jump.wav", 0);

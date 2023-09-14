@@ -3,9 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.VolatileImage;
-
 import util.LoadingStuffs;
-
 import java.awt.image.BufferedImage;
 import java.awt.GraphicsEnvironment;
 

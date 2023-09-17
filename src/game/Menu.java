@@ -177,7 +177,7 @@ public class Menu {
             this.menuSelect.play();
         }
 
-        if ((key == 10 || key == 32)) {
+        if ((key == 10 || key == 32)) { //enter or space
             if (this.currentSelectorPos == 2) {
                 this.exiting.play();
                 this.gameRef.exitGame();
@@ -185,7 +185,8 @@ public class Menu {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
                 this.music.stop();
-                this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
+                this.gameRef.changeGameStateToEnding();
+                //this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
             }
         }
 

@@ -191,5 +191,5 @@ public interface GameInterface {
     /**
      * Change the gamestate to ingame
      */
-    public void changeGameStateToInGame(int i);
+    public void changeGameStateToInGame(int whichStage);
 }

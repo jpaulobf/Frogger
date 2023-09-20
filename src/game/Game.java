@@ -38,9 +38,9 @@ public class Game implements GameInterface {
     private Message message                 = null;
     private Timer timer                     = null;
     private ExitScreen exitScreen           = null;
+    private Ending ending                   = null;
     private volatile Audio theme            = null;
     private volatile Audio gameoverTheme    = null;
-    private volatile Audio endingTheme      = null;
     private volatile long framecounter      = 0;
     private volatile boolean mute           = false;
     private volatile boolean canContinue    = true;
@@ -84,11 +84,11 @@ public class Game implements GameInterface {
         this.message        = new Message(this, this.wwm, this.completeWhm);
         this.timer          = new Timer(this, this.wwm, this.scoreHeight + this.whm);
         this.exitScreen     = new ExitScreen(this, this.wwm, this.whm);
+        this.ending         = new Ending(this, this.wwm, this.whm);
 
         //load general objects
         this.theme          = LoadingStuffs.getInstance().getAudio("theme");
         this.gameoverTheme  = LoadingStuffs.getInstance().getAudio("gameover-theme");
-        this.endingTheme    = LoadingStuffs.getInstance().getAudio("ending-theme");
     }
     
     /**
@@ -178,14 +178,11 @@ public class Game implements GameInterface {
                 this.exitScreen.update(frametime);
             } else if (this.gameState.getCurrentState() == StateMachine.ENDING) {
                 this.framecounter += frametime;
-                if (this.framecounter >= 10_000_000_000L) {
-                    this.frog.resetLives();
-                    this.gameTerminate();
-                    this.changeGameState(StateMachine.MENU);
-                } else if (this.framecounter == frametime) { //run just once
+                if (this.framecounter == frametime) { //run just once
                     this.theme.stop();
-                    this.endingTheme.play();
+                    this.ending.playTheme();
                 }
+                this.ending.update(frametime);
             }
 
             //Prevent overflow
@@ -231,6 +228,8 @@ public class Game implements GameInterface {
                 }
             } else if (this.gameState.getCurrentState() == StateMachine.GAME_OVER) {
                 this.gameOver.draw(frametime);
+            } else if (this.gameState.getCurrentState() == StateMachine.ENDING) {
+                this.ending.draw(frametime);
             }
         } else {
             this.skipDraw = false;
@@ -482,6 +481,8 @@ public class Game implements GameInterface {
                     this.changeGameState(StateMachine.EXITING);
                 }
                 this.ignoreNextEsc = false;
+            } else if (this.gameState.getCurrentState() == StateMachine.ENDING) {
+                this.ending.keyPressed(keyCode);
             }
         }       
     }
@@ -548,9 +549,9 @@ public class Game implements GameInterface {
     /**
      * set game state to options
      */
-    public void changeGameStateToInGame(int currentStage) {
+    public void changeGameStateToInGame(int whichStage) {
         this.skipDraw();
-        this.setCurrentStage(currentStage, false);
+        this.setCurrentStage(whichStage, false);
         this.changeGameState(StateMachine.STAGING);
     }
 
@@ -558,6 +559,7 @@ public class Game implements GameInterface {
      * set game state to menu
      */
     public void changeGameStateToMenu() {
+        this.menu.reset();
         this.changeGameState(StateMachine.MENU);
     }
 

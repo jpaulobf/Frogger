@@ -107,7 +107,6 @@ public interface GameInterface {
      */
     public void keyReleased(int keyCode);
 
-
     /**
      * Mute game music
      */

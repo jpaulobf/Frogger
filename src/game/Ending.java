@@ -12,6 +12,7 @@ import java.awt.GraphicsEnvironment;
  * Class represents the gameover scene
  */
 public class Ending {
+    
     //Scenario variables
     private Graphics2D bgd2             = null;
     private int windowWidth             = 0;

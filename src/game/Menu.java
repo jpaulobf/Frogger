@@ -185,8 +185,8 @@ public class Menu {
                 this.gameRef.changeGameStateToOption();
             } else if (this.currentSelectorPos == 0) {
                 this.music.stop();
-                this.gameRef.changeGameStateToEnding();
-                //this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
+                //this.gameRef.changeGameStateToEnding();
+                this.gameRef.changeGameStateToInGame(this.currentStageSelection + 1);
             }
         }
 

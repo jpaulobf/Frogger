@@ -155,6 +155,8 @@ public class Game implements GameInterface {
                     this.changeGameState(StateMachine.GAME_OVER);
                     this.score.storeNewHighScore();
                     this.score.reset();
+                } else if (Stages.CURRENT_STAGE[0] == 11) { //End Game
+                    this.changeGameStateToEnding();
                 }
             } else if (this.gameState.getCurrentState() == StateMachine.GAME_OVER) {
                 this.framecounter += frametime;

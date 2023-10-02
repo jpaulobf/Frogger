@@ -4,6 +4,7 @@ public interface Stages extends Directions {
     
     //Set the current stage
     public static int [] CURRENT_STAGE                    = {1};
+    public static int LAST_STAGE = 10;
 
     //------------------------------------CARS CONFIG------------------------------------------//
     public static final short [][] S1_CARS_VELOCITIES     = {{80},  {120}, {50},  {120}, {140}}; //Stage 1 parameters, cars in line 1, cars in line 2...

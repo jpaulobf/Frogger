@@ -155,7 +155,7 @@ public class Game implements GameInterface {
                     this.changeGameState(StateMachine.GAME_OVER);
                     this.score.storeNewHighScore();
                     this.score.reset();
-                } else if (Stages.CURRENT_STAGE[0] == 11) { //End Game
+                } else if (Stages.CURRENT_STAGE[0] > Stages.LAST_STAGE) { //End Game
                     this.changeGameStateToEnding();
                 }
             } else if (this.gameState.getCurrentState() == StateMachine.GAME_OVER) {
@@ -426,7 +426,11 @@ public class Game implements GameInterface {
      */
     public synchronized void nextStage(boolean togglePause) {
         int next = Stages.CURRENT_STAGE[0] + 1;
-        this.setCurrentStage(next, togglePause);
+        if (next <= Stages.LAST_STAGE) {
+            this.setCurrentStage(next, togglePause);
+        } else {
+            this.changeGameStateToEnding();
+        }
     }
 
     /** 
